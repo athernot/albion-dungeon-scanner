@@ -12,6 +12,8 @@ dependencies = [
     "customtkinter>=5.2.2",  # <-- Tambahkan ini
     "requests>=2.32.3",
     "pillow>=11.2.1",
+    "dearpygui>=2.0.0",
+    "flet>=0.28.3",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
@@ -21,6 +23,8 @@ license = {text = "MIT"}
 scan = {cmd = "python -c 'from scanner import main; main()'"}
 build_database = "python build_database.py"
 gui = {cmd = "python gui.py"}  # <-- Tambahkan ini
+scan_dpg = "python gui_dearpygui.py"
+scan_flet = "python gui_flet.py" 
 
 [tool.pdm]
 distribution = false
