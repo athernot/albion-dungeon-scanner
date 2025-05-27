@@ -20,74 +20,63 @@ TYPE_EVENT_BOSS = "EVENT_BOSS"
 TYPE_DUNGEON_BOSS = "DUNGEON_BOSS"
 TYPE_CHEST = "CHEST"
 TYPE_SHRINE = "SHRINE"
-TYPE_MOB = "MOB" # Untuk mob yang mungkin ingin diberi nama spesifik
+TYPE_MOB = "MOB" 
 
 def load_translations():
     global TRANSLATIONS, LAST_API_UPDATE_TIMESTAMPS
     if not os.path.exists(DATABASE_FILE):
         initial_db = {
-            # Event Bosses
-            "UNCLEFROST": ("Uncle Frost (Event Musim Dingin)", "🥶", TYPE_EVENT_BOSS),
-            "ANNIVERSARY_TITAN": ("Titan Anniversary (Event)", "⚔️", TYPE_EVENT_BOSS),
-            "RANDOM_EVENT_WINTER_STANDARD_BOSS": ("Bos Standar (Event Musim Dingin)", "☃️", TYPE_EVENT_BOSS),
-            "RANDOM_EVENT_WINTER_VETERAN_BOSS": ("Bos Veteran (Event Musim Dingin)", "☃️❄️", TYPE_EVENT_BOSS),
-            "RANDOM_RD_ANNIVERSARY_SOLO_BOSS": ("Bos Anniversary Solo (Event)", "🎉", TYPE_EVENT_BOSS),
-            "RANDOM_RD_ANNIVERSARY_VETERAN_BOSS": ("Bos Anniversary Veteran (Event)", "🎉🏆", TYPE_EVENT_BOSS),
+            # Event Bosses (dari Wiki/Umum)
+            "UNCLEFROST": ("Uncle Frost (Winter Event)", "🥶", TYPE_EVENT_BOSS),
+            "ANNIVERSARY_TITAN": ("Anniversary Titan (Anniversary Event)", "⚔️", TYPE_EVENT_BOSS),
+            "RANDOM_EVENT_WINTER_STANDARD_BOSS": ("Harbinger of Frost (Winter Event Boss)", "☃️", TYPE_EVENT_BOSS),
+            "RANDOM_EVENT_WINTER_VETERAN_BOSS": ("Veteran Harbinger of Frost (Winter Event Boss)", "☃️❄️", TYPE_EVENT_BOSS),
+            "RANDOM_RD_ANNIVERSARY_SOLO_BOSS": ("Anniversary Boss Solo", "🎉", TYPE_EVENT_BOSS),
+            "RANDOM_RD_ANNIVERSARY_VETERAN_BOSS": ("Anniversary Boss Veteran", "🎉🏆", TYPE_EVENT_BOSS),
 
-            # Dungeon Bosses (Contoh berdasarkan Wiki & Log)
-            # Heretic
-            "RANDOM_HERETIC_SOLO_MINIBOSS": ("Minibos Heretic", "💀", TYPE_DUNGEON_BOSS),
-            "RANDOM_HERETIC_VETERAN_MINIBOSS": ("Minibos Heretic Veteran", "💀", TYPE_DUNGEON_BOSS),
-            "RANDOM_HERETIC_SOLO_BOSS_HIGHLIGHT": ("Bos Heretic (Highlight)", "👻", TYPE_DUNGEON_BOSS),
-            "RANDOM_HERETIC_VETERAN_BOSS_HIGHLIGHT": ("Bos Heretic Veteran (Highlight)", "👻", TYPE_DUNGEON_BOSS),
-            "RANDOM_HERETIC_SOLO_ENDBOSS_UNCOMMON": ("Bos Akhir Heretic (Biru)", "👹", TYPE_DUNGEON_BOSS),
-            "RANDOM_HERETIC_VETERAN_ENDBOSS_UNCOMMON": ("Bos Akhir Heretic Veteran (Biru)", "👹", TYPE_DUNGEON_BOSS),
-            # Keeper
-            "RANDOM_KEEPER_SOLO_MINIBOSS": ("Minibos Keeper", "🌿💀", TYPE_DUNGEON_BOSS),
-            "RANDOM_KEEPER_VETERAN_MINIBOSS": ("Minibos Keeper Veteran", "🌿💀", TYPE_DUNGEON_BOSS),
-            "RANDOM_KEEPER_SOLO_BOSS_HIGHLIGHT": ("Bos Keeper (Highlight)", "🌿👻", TYPE_DUNGEON_BOSS),
-            "RANDOM_KEEPER_VETERAN_BOSS_HIGHLIGHT": ("Bos Keeper Veteran (Highlight)", "🌿👻", TYPE_DUNGEON_BOSS),
-            "RANDOM_KEEPER_SOLO_ENDBOSS_RARE_CHIEFTAIN": ("Chieftain Keeper (Ungu)", "🌿👹", TYPE_DUNGEON_BOSS),
-            "RANDOM_KEEPER_VETERAN_ENDBOSS_RARE_CHIEFTAIN": ("Chieftain Keeper Veteran (Ungu)", "🌿👹", TYPE_DUNGEON_BOSS),
-             # Morgana
-            "RANDOM_MORGANA_SOLO_MINIBOSS": ("Minibos Morgana", "⚔️💀", TYPE_DUNGEON_BOSS),
-            "RANDOM_MORGANA_VETERAN_MINIBOSS": ("Minibos Morgana Veteran", "⚔️💀", TYPE_DUNGEON_BOSS),
-            "RANDOM_MORGANA_SOLO_BOSS_HIGHLIGHT": ("Bos Morgana (Highlight)", "⚔️👻", TYPE_DUNGEON_BOSS),
-            "RANDOM_MORGANA_VETERAN_BOSS_HIGHLIGHT": ("Bos Morgana Veteran (Highlight)", "⚔️👻", TYPE_DUNGEON_BOSS),
-            "RANDOM_MORGANA_SOLO_ENDBOSS_UNCOMMON": ("Bos Akhir Morgana (Biru)", "⚔️👹", TYPE_DUNGEON_BOSS),
-            "RANDOM_MORGANA_VETERAN_ENDBOSS_UNCOMMON": ("Bos Akhir Morgana Veteran (Biru)", "⚔️👹", TYPE_DUNGEON_BOSS),
-            # Undead
-             "RANDOM_UNDEAD_SOLO_ENDBOSS_UNCOMMON_GENERAL": ("Bos Akhir Undead (Umum)", "💀👹", TYPE_DUNGEON_BOSS),
-
-
-            # Shrines (Altar)
-            "SHRINE_FAME_BUFF": ("Altar Peningkatan Fame", "📈", TYPE_SHRINE), # Sebelumnya SHRINE_FAME
-            "SHRINE_COMBAT_BUFF": ("Altar Kekuatan Tempur", "💥", TYPE_SHRINE),
-            "SHRINE_DEFENSE_BUFF": ("Altar Pertahanan", "🛡️", TYPE_SHRINE),
-            "SHRINE_ENERGY_REGEN_BUFF": ("Altar Regenerasi Energi", "⚡", TYPE_SHRINE),
-            "SHRINE_HEALTH_REGEN_BUFF": ("Altar Regenerasi HP", "❤️", TYPE_SHRINE),
-            "SHRINE_COOLDOWN_REDUCTION_BUFF": ("Altar Pengurangan Cooldown", "⏳", TYPE_SHRINE),
-            "SHRINE_MOB_SPEED_BUFF": ("Altar Kecepatan Gerak", "🏃", TYPE_SHRINE),
-
-            # Chests - Umum (Solo/Group bisa memiliki pola ID mirip)
-            "LOOTCHEST_STANDARD": ("Peti Biasa (Hijau)", "🟩"),
-            "LOOTCHEST_UNCOMMON": ("Peti Tidak Biasa (Biru)", "🟦"),
-            "LOOTCHEST_RARE": ("Peti Langka (Ungu)", "🟪"),
-            "LOOTCHEST_LEGENDARY": ("Peti Legendaris (Emas)", "🟨"),
+            # Dungeon Bosses (Contoh, inspirasi dari Wiki)
+            # Anda perlu menyesuaikan ID_INTERNAL_BOSS dengan yang ditemukan pemindai
+            "HERETIC_CHIEF": ("Heretic Chief", "👹", TYPE_DUNGEON_BOSS),
+            "KEEPER_CHIEFTAIN": ("Keeper Chieftain", "🌿👹", TYPE_DUNGEON_BOSS),
+            "MORGANA_COMMANDER": ("Morgana Commander", "⚔️👹", TYPE_DUNGEON_BOSS),
+            "UNDEAD_GENERAL": ("Undead General", "💀👹", TYPE_DUNGEON_BOSS),
+            "AVALONIAN_HIGH_PRIEST": ("Avalonian High Priest", "💠👹", TYPE_DUNGEON_BOSS),
             
-            "LOOTCHEST_KEEPER_SOLO_UNCOMMON": ("Peti Keeper Solo (Biru)", "🟦"), # Dari log
-            "LOOTCHEST_ANNIVERSARY_SOLO_LOOTCHEST_BOSS": ("Peti Boss Anniversary Solo", "🎂"), # Dari log
+            # Contoh ID dari log Anda yang kemungkinan Dungeon Boss
+            "RANDOM_KEEPER_SOLO_BOSS_HIGHLIGHT": ("Keeper Solo Boss (Highlight)", "🌿👻", TYPE_DUNGEON_BOSS),
+            "RANDOM_MORGANA_SOLO_ENDBOSS_UNCOMMON": ("Morgana Solo Endboss", "⚔️👻", TYPE_DUNGEON_BOSS),
 
-            # Tambahkan lebih banyak entri berdasarkan Wiki & GitHub Data jika memungkinkan
-            # Contoh: T4_LOOTCHEST_GREEN_STANDARD, T5_LOOTCHEST_BLUE_STANDARD, dst.
-            # Namun, karena ID dari XML sering tidak menyertakan Tier secara eksplisit di bagian yang kita parse,
-            # kita mungkin lebih baik mengandalkan kata kunci umum di atas dan API.
+
+            # Shrines (dari Wiki)
+            "SHRINE_COMBAT_POWER": ("Might Shrine (Combat Power)", "💥", TYPE_SHRINE),
+            "SHRINE_DEFENSE": ("Protection Shrine (Defense)", "🛡️", TYPE_SHRINE),
+            "SHRINE_FAME": ("Insight Shrine (Fame Buff)", "📈", TYPE_SHRINE), # Mengganti nama agar lebih sesuai Wiki
+            "SHRINE_COOLDOWN": ("Cooldown Shrine", "⏳", TYPE_SHRINE),
+            "SHRINE_HEALTH": ("Regeneration Shrine (Health)", "❤️", TYPE_SHRINE),
+            "SHRINE_ENERGY": ("Energy Shrine", "⚡", TYPE_SHRINE),
+            "SHRINE_SPEED": ("Swiftness Shrine (Speed)", "🏃", TYPE_SHRINE), # Mengganti nama
+            "SHRINE_NON_COMBAT_BUFF": ("Altar Buff Non-Tempur Umum", "✨", TYPE_SHRINE), # Dari log Anda
+
+            # Chests (inspirasi dari Wiki, ID akan dicocokkan secara parsial)
+            # Kunci di sini adalah bagian PENTING dari ID internal. Tier & variasi akan ditangani program.
+            "LOOTCHEST_STANDARD": ("Peti Biasa (Hijau)", "🟩", TYPE_CHEST),
+            "LOOTCHEST_UNCOMMON": ("Peti Tidak Biasa (Biru)", "🟦", TYPE_CHEST),
+            "LOOTCHEST_RARE": ("Peti Langka (Ungu)", "🟪", TYPE_CHEST),
+            "LOOTCHEST_EPIC": ("Peti Epik (Emas)", "🟨", TYPE_CHEST), # Dulu disebut Legendary
+            "LOOTCHEST_LEGENDARY": ("Peti Legendaris (Emas Terang)", "🌟", TYPE_CHEST), # Untuk peti yang lebih tinggi lagi jika ada
+            
+            "LOOTCHEST_BOSS": ("Peti Boss", "👑", TYPE_CHEST), # Generik Peti Boss
+            "LOOTCHEST_MINIBOSS": ("Peti Minibos", "🏆", TYPE_CHEST),
+
+            # Contoh spesifik dari log Anda (ini bisa dihapus jika pencocokan parsial di atas sudah cukup)
+            "LOOTCHEST_KEEPER_SOLO_UNCOMMON": ("Peti Keeper Solo (Biru)", "🟦", TYPE_CHEST),
+            "LOOTCHEST_ANNIVERSARY_SOLO_LOOTCHEST_BOSS": ("Peti Boss Anniversary Solo", "🎂", TYPE_CHEST),
         }
         with open(DATABASE_FILE, 'w', encoding='utf-8') as f:
             json.dump({"translations": initial_db, "timestamps": {}}, f, indent=4, ensure_ascii=False)
         TRANSLATIONS = initial_db
         LAST_API_UPDATE_TIMESTAMPS = {}
-        print(f"DEBUG: Database awal (lebih kaya) dibuat di {DATABASE_FILE}")
+        print(f"DEBUG: Database awal (berdasarkan Wiki & Log) dibuat di {DATABASE_FILE}")
     else:
         with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -126,18 +115,23 @@ def fetch_and_update_id_from_api(item_id_xml):
             elif len(existing_entry) == 2: current_name_in_db, current_icon = existing_entry
         
         icon_to_use = current_icon if current_icon and current_icon != "❓" else "❓"
-        type_to_use = current_type 
-
-        if icon_to_use == "❓":
+        
+        if icon_to_use == "❓": # Coba tebak ikon jika belum ada
             clean_id_upper = clean_id.upper()
-            if "LOOTCHEST" in clean_id_upper: icon_to_use = "📦"
+            if "LOOTCHEST_STANDARD" in clean_id_upper : icon_to_use = "🟩"
+            elif "LOOTCHEST_UNCOMMON" in clean_id_upper : icon_to_use = "🟦"
+            elif "LOOTCHEST_RARE" in clean_id_upper : icon_to_use = "🟪"
+            elif "LOOTCHEST_EPIC" in clean_id_upper or "LOOTCHEST_LEGENDARY" in clean_id_upper : icon_to_use = "🟨"
+            elif "LOOTCHEST_BOSS" in clean_id_upper : icon_to_use = "👑"
+            elif "LOOTCHEST" in clean_id_upper: icon_to_use = "📦" # Generik
             elif "SHRINE" in clean_id_upper: icon_to_use = "✨"
-            elif any(boss_key in clean_id_upper for boss_key in API_RELEVANT_KEYWORDS if "BOSS" in boss_key): icon_to_use = "👑"
+            elif any(boss_key in clean_id_upper for boss_key in API_RELEVANT_KEYWORDS if "BOSS" in boss_key): icon_to_use = "👻"
+
 
         if is_new_id_in_translations or (api_item_name != current_name_in_db and api_item_name != clean_id) :
             print(f"DEBUG API Update: Data untuk '{clean_id}' diperbarui. Nama API: '{api_item_name}', Nama DB: '{current_name_in_db}'")
-            # Simpan dengan tipe jika sudah ada, jika tidak simpan tanpa tipe dulu
-            entry_to_save = (api_item_name, icon_to_use, type_to_use) if type_to_use else (api_item_name, icon_to_use)
+            # Simpan dengan tipe jika sudah ada, jika tidak simpan tanpa tipe dulu (akan ditentukan oleh klasifikasi)
+            entry_to_save = (api_item_name, icon_to_use, current_type) if current_type else (api_item_name, icon_to_use)
             TRANSLATIONS[clean_id] = entry_to_save
             LAST_API_UPDATE_TIMESTAMPS[clean_id] = current_time
             save_translations()
@@ -146,7 +140,7 @@ def fetch_and_update_id_from_api(item_id_xml):
              save_translations() # Simpan timestamp saja
     except requests.exceptions.HTTPError as e:
         if e.response.status_code == 404: print(f"DEBUG API Info: ID '{clean_id}' tidak ditemukan di API (404). URL: {url}")
-        else: print(f"DEBUG API HTTP Error: Gagal mengambil data untuk {clean_id}. Status: {e.response.status_code}. URL: {url}")
+        # else: print(f"DEBUG API HTTP Error: Gagal mengambil data untuk {clean_id}. Status: {e.response.status_code}. URL: {url}")
     except Exception as e: print(f"DEBUG API Error: Terjadi kesalahan saat memproses ID {clean_id}. Error: {type(e).__name__} - {e}. URL: {url}")
 
 load_translations()
@@ -185,11 +179,17 @@ class AlbionDungeonScanner:
                 except Exception: pass 
         shutil.rmtree(temp_path, ignore_errors=True)
 
-    def extract_tier_from_id(self, item_id_xml):
+    def extract_tier_from_id(self, item_id_xml_or_clean_id):
         # Mencoba mengekstrak tier seperti T4, T5, dll. dari awal ID
-        match = re.match(r"T(\d+)_", item_id_xml.upper())
+        # ID bisa datang dengan atau tanpa SpawnPoint_
+        id_to_check = item_id_xml_or_clean_id.replace("SpawnPoint_", "")
+        match = re.match(r"T(\d+)_", id_to_check.upper())
         if match:
             return f"T{match.group(1)}"
+        # Cek juga format seperti MOB_KEEPER_T5...
+        match_mob = re.search(r"_T(\d+)", id_to_check.upper())
+        if match_mob:
+            return f"T{match_mob.group(1)}"
         return "Unknown Tier"
 
     def run(self) -> dict:
@@ -207,10 +207,8 @@ class AlbionDungeonScanner:
         found_dungeon_bosses_keys = []
         found_chests_keys = []
         found_shrines_keys = []
-        # Ubah found_generic_mobs_ids menjadi kamus untuk menyimpan hitungan per tier
-        # Format: {"T4": Counter(), "T5": Counter(), "Unknown Tier": Counter()}
-        mobs_by_tier = {f"T{i}": Counter() for i in range(1, 9)} 
-        mobs_by_tier["Unknown Tier"] = Counter()
+        mobs_by_tier_counters = {f"T{i}": Counter() for i in range(1, 9)} 
+        mobs_by_tier_counters["Unknown Tier"] = Counter()
         
         found_exits_filenames = []
         all_item_ids_from_xml = set()
@@ -244,8 +242,9 @@ class AlbionDungeonScanner:
             item_id_xml_upper = item_id_xml.upper() 
             clean_id = item_id_xml.replace("SpawnPoint_", "")
             classified_this_id = False
-            item_tier = self.extract_tier_from_id(item_id_xml) # Ekstrak tier
+            item_tier = self.extract_tier_from_id(clean_id) # Ekstrak tier dari clean_id
 
+            # 1. Cek dengan entri di TRANSLATIONS (yang mungkin baru diupdate API)
             if clean_id in TRANSLATIONS:
                 entry = TRANSLATIONS[clean_id]
                 item_type_from_db = entry[2] if len(entry) == 3 else None 
@@ -257,10 +256,12 @@ class AlbionDungeonScanner:
                 elif item_type_from_db == TYPE_SHRINE:
                     found_shrines_keys.append(clean_id); classified_this_id = True
                 elif item_type_from_db == TYPE_MOB:
-                     mobs_by_tier.setdefault(item_tier, Counter()).update([clean_id]); classified_this_id = True
-                elif "LOOTCHEST" in clean_id.upper(): 
+                     mobs_by_tier_counters.setdefault(item_tier, Counter()).update([clean_id]); classified_this_id = True
+                # Jika ada di TRANSLATIONS tapi tidak ada tipe, atau tipenya CHEST
+                elif "LOOTCHEST" in clean_id.upper() or (item_type_from_db == TYPE_CHEST):
                      found_chests_keys.append(clean_id); classified_this_id = True
             
+            # 2. Jika belum terklasifikasi, gunakan logika generik berdasarkan kata kunci di ID
             if not classified_this_id:
                 if "SHRINE" in item_id_xml_upper or "ALTAR" in item_id_xml_upper:
                     found_shrines_keys.append(clean_id); classified_this_id = True
@@ -268,37 +269,34 @@ class AlbionDungeonScanner:
                     found_chests_keys.append(clean_id); classified_this_id = True
                 elif any(k in item_id_xml_upper for k in ["BOSS", "UNCLEFROST", "ANNIVERSARY_TITAN"]):
                     is_specific_event_boss = False
-                    for event_key in ["UNCLEFROST", "ANNIVERSARY_TITAN"]:
+                    for event_key in ["UNCLEFROST", "ANNIVERSARY_TITAN"]: # Kunci bos event spesifik
                         if event_key in item_id_xml_upper:
                             if event_key not in found_event_bosses_keys: found_event_bosses_keys.append(event_key)
                             is_specific_event_boss = True; break
-                    if not is_specific_event_boss:
+                    if not is_specific_event_boss: # Asumsikan dungeon boss
                          if clean_id not in found_dungeon_bosses_keys: found_dungeon_bosses_keys.append(clean_id)
                     classified_this_id = True
             
-            if not classified_this_id and ("RANDOM" in item_id_xml_upper or "MOB" in item_id_xml_upper or any(faction in item_id_xml_upper for faction in ["KEEPER", "HERETIC", "MORGANA", "UNDEAD"])):
-                mobs_by_tier.setdefault(item_tier, Counter()).update([clean_id])
-                # classified_this_id = True # Tidak perlu, ini adalah kategori 'lainnya'
+            # 3. Jika belum terklasifikasi, anggap sebagai mob biasa
+            if not classified_this_id and ("RANDOM" in item_id_xml_upper or "MOB" in item_id_xml_upper or any(faction in item_id_xml_upper for faction in ["KEEPER", "HERETIC", "MORGANA", "UNDEAD", "AVALONIAN"])):
+                mobs_by_tier_counters.setdefault(item_tier, Counter()).update([clean_id])
+                # classified_this_id = True # Tidak perlu, ini defaultnya
 
-        # Deteksi Bos dari Nama File
-        current_event_boss_set = set(found_event_bosses_keys) 
+        # Deteksi Bos dari Nama File (fallback untuk event boss jika tidak ada di XML tile)
         for file_path in self.used_files:
             filename_upper = os.path.basename(file_path).upper()
-            if "UNCLEFROST" in filename_upper and "UNCLEFROST" not in current_event_boss_set: 
+            if "UNCLEFROST" in filename_upper and "UNCLEFROST" not in found_event_bosses_keys: 
                 found_event_bosses_keys.append("UNCLEFROST"); fetch_and_update_id_from_api("UNCLEFROST") 
-            if "ANNIVERSARY_TITAN" in filename_upper and "ANNIVERSARY_TITAN" not in current_event_boss_set: 
+            if "ANNIVERSARY_TITAN" in filename_upper and "ANNIVERSARY_TITAN" not in found_event_bosses_keys: 
                 found_event_bosses_keys.append("ANNIVERSARY_TITAN"); fetch_and_update_id_from_api("ANNIVERSARY_TITAN")
-
-        # Hitung total mob biasa dari semua tier
-        total_generic_mobs = sum(sum(tier_counter.values()) for tier_counter in mobs_by_tier.values())
-
-        print(f"DEBUG Hasil Akhir: EventBosses: {Counter(found_event_bosses_keys)}, DungeonBosses: {Counter(found_dungeon_bosses_keys)}, Chests: {Counter(found_chests_keys)}, Shrines: {Counter(found_shrines_keys)}, TotalGenericMobs: {total_generic_mobs}, Exits: {len(found_exits_filenames)}")
+        
+        print(f"DEBUG Hasil Akhir: EventBosses: {Counter(found_event_bosses_keys)}, DungeonBosses: {Counter(found_dungeon_bosses_keys)}, Chests: {Counter(found_chests_keys)}, Shrines: {Counter(found_shrines_keys)}, MobsByTier: {mobs_by_tier_counters}, Exits: {len(found_exits_filenames)}")
         
         return {
             "event_bosses": Counter(found_event_bosses_keys),
             "dungeon_bosses": Counter(found_dungeon_bosses_keys),
             "chests": Counter(found_chests_keys),
             "shrines": Counter(found_shrines_keys),
-            "mobs_by_tier": mobs_by_tier, # Kirim data mob per tier
+            "mobs_by_tier": mobs_by_tier_counters, 
             "exits": found_exits_filenames,
         }

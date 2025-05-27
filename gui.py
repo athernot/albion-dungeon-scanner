@@ -4,7 +4,7 @@ import customtkinter
 import configparser
 import os
 from collections import Counter
-# Import dinamis akan dilakukan di dalam fungsi yang memerlukan versi terbaru
+# Import dinamis
 
 customtkinter.set_appearance_mode("System")
 customtkinter.set_default_color_theme("blue")
@@ -15,8 +15,8 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Albion Dungeon Scanner (Advanced v2)")
-        self.geometry(f"{700}x650") # Perbesar sedikit lagi untuk detail mob
+        self.title("Albion Dungeon Scanner (Wiki-Enhanced)")
+        self.geometry(f"{700}x680") # Sedikit perbesar lagi
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
         
@@ -59,11 +59,11 @@ class App(customtkinter.CTk):
             "dungeon_bosses": Counter(),
             "chests": Counter(),
             "shrines": Counter(),
-            "mobs_by_tier": {f"T{i}": Counter() for i in range(1, 9)}, # Inisialisasi mobs_by_tier
+            "mobs_by_tier": {f"T{i}": Counter() for i in range(1, 9)},
             "exits": set()
         }
-        if 'mobs_by_tier' not in self.session_findings: self.session_findings['mobs_by_tier'] = {}
-        self.session_findings['mobs_by_tier'].setdefault("Unknown Tier", Counter())
+        # Pastikan semua tier ada kuncinya
+        self.session_findings["mobs_by_tier"].setdefault("Unknown Tier", Counter())
 
         if hasattr(self, 'status_label'): 
             self.status_label.configure(text="Sesi direset. Siap untuk dungeon baru.")
@@ -126,13 +126,12 @@ class App(customtkinter.CTk):
         
     def merge_and_update_ui(self, current_results):
         if current_results:
-            self.session_findings["event_bosses"].update(current_results["event_bosses"])
-            self.session_findings["dungeon_bosses"].update(current_results["dungeon_bosses"])
-            self.session_findings["chests"].update(current_results["chests"])
-            self.session_findings["shrines"].update(current_results["shrines"])
-            self.session_findings["exits"].update(current_results["exits"])
+            self.session_findings["event_bosses"].update(current_results.get("event_bosses", Counter()))
+            self.session_findings["dungeon_bosses"].update(current_results.get("dungeon_bosses", Counter()))
+            self.session_findings["chests"].update(current_results.get("chests", Counter()))
+            self.session_findings["shrines"].update(current_results.get("shrines", Counter()))
+            self.session_findings["exits"].update(current_results.get("exits", set()))
 
-            # Gabungkan mobs_by_tier
             if "mobs_by_tier" in current_results:
                 for tier, tier_counter in current_results["mobs_by_tier"].items():
                     self.session_findings["mobs_by_tier"].setdefault(tier, Counter()).update(tier_counter)
@@ -153,10 +152,17 @@ class App(customtkinter.CTk):
             output_lines.append(f"\n{title}")
             for item_id, count in sorted(items_counter.items()):
                 entry = active_translations.get(item_id)
-                item_name, icon = f"ID Tidak Dikenal: {item_id}", "❓"
+                item_name, icon = f"ID Tidak Dikenal: {item_id}", "❓" # Default
+                item_type = None
                 if entry:
                     item_name = entry[0]
                     icon = entry[1] if len(entry) > 1 else "❓"
+                    # Tipe item ada di elemen ketiga jika ada
+                    # item_type = entry[2] if len(entry) == 3 else None 
+                
+                # Untuk menampilkan tier jika itu adalah ID mob generik yang tidak ada di TRANSLATIONS
+                # Tapi item_id di sini adalah clean_id, jadi info tier mungkin sudah hilang jika tidak di awal ID
+                # Mungkin lebih baik tidak menampilkan tier di sini jika terlalu rumit dan sudah dihitung terpisah
                 output_lines.append(f"{icon} {item_name:<60} (x{count})")
         
         format_category_counters("[ EVENT BOSS TERLIHAT ]", self.session_findings["event_bosses"])
@@ -165,30 +171,33 @@ class App(customtkinter.CTk):
         format_category_counters("[ PETI TERLIHAT (TOTAL SPAWN POINT) ]", self.session_findings["chests"])
         
         # Tampilkan jumlah mob per tier
-        total_mobs = 0
         if self.session_findings.get("mobs_by_tier"):
             mob_tier_lines = []
-            for tier in sorted(self.session_findings["mobs_by_tier"].keys()):
+            total_mobs = 0
+            # Urutkan tier (T1, T2, ..., Unknown Tier)
+            sorted_tiers = sorted(self.session_findings["mobs_by_tier"].keys(), key=lambda t: (t.startswith("T"), int(t[1:]) if t[1:].isdigit() else float('inf'), t))
+
+            for tier in sorted_tiers:
                 tier_counter = self.session_findings["mobs_by_tier"][tier]
-                if tier_counter:
-                    tier_total = sum(tier_counter.values())
-                    total_mobs += tier_total
-                    mob_tier_lines.append(f"  - {tier}: {tier_total} spawn point")
-            
+                if tier_counter: # Hanya tampilkan tier yang ada mobnya
+                    tier_total_count = sum(tier_counter.values())
+                    total_mobs += tier_total_count
+                    # Jika ingin detail per mob di tier itu:
+                    # mob_details = [f"{active_translations.get(mob_id, (mob_id, '👾'))[0]} (x{c})" for mob_id, c in tier_counter.items()]
+                    # mob_tier_lines.append(f"  - {tier} ({tier_total_count} total): {', '.join(mob_details)}")
+                    mob_tier_lines.append(f"  - Spawn Point Mob {tier}: {tier_total_count}")
+
             if mob_tier_lines:
                 output_lines.append(f"\n[ MOB BIASA TERDETEKSI (PER TIER) ]")
                 output_lines.extend(mob_tier_lines)
-                output_lines.append(f"👾 Total Spawn Point Mob Biasa: {total_mobs}")
+                output_lines.append(f"👾 Total Semua Spawn Point Mob Biasa: {total_mobs}")
 
-
-        is_empty = True # Cek apakah ada temuan signifikan
+        is_empty = True 
         for key, category_data in self.session_findings.items():
             if key == "exits": continue
             if key == "mobs_by_tier":
-                if any(tier_data for tier_data in category_data.values()):
-                    is_empty = False; break
-            elif category_data: 
-                is_empty = False; break
+                if any(tier_data for tier_data in category_data.values()): is_empty = False; break
+            elif category_data: is_empty = False; break
         if is_empty:
              output_lines.append("\n- Belum ada item, bos, peti, atau mob yang signifikan ditemukan.")
 

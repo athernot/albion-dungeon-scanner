@@ -1,188 +1,154 @@
 {
     "translations": {
         "UNCLEFROST": [
-            "Uncle Frost (Event Musim Dingin)",
+            "Uncle Frost (Winter Event)",
             "🥶",
             "EVENT_BOSS"
         ],
         "ANNIVERSARY_TITAN": [
-            "Titan Anniversary (Event)",
+            "Anniversary Titan (Anniversary Event)",
             "⚔️",
             "EVENT_BOSS"
         ],
         "RANDOM_EVENT_WINTER_STANDARD_BOSS": [
-            "Bos Standar (Event Musim Dingin)",
+            "Harbinger of Frost (Winter Event Boss)",
             "☃️",
             "EVENT_BOSS"
         ],
         "RANDOM_EVENT_WINTER_VETERAN_BOSS": [
-            "Bos Veteran (Event Musim Dingin)",
+            "Veteran Harbinger of Frost (Winter Event Boss)",
             "☃️❄️",
             "EVENT_BOSS"
         ],
         "RANDOM_RD_ANNIVERSARY_SOLO_BOSS": [
-            "Bos Anniversary Solo (Event)",
+            "Anniversary Boss Solo",
             "🎉",
             "EVENT_BOSS"
         ],
         "RANDOM_RD_ANNIVERSARY_VETERAN_BOSS": [
-            "Bos Anniversary Veteran (Event)",
+            "Anniversary Boss Veteran",
             "🎉🏆",
             "EVENT_BOSS"
         ],
-        "RANDOM_HERETIC_SOLO_MINIBOSS": [
-            "Minibos Heretic",
-            "💀",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_HERETIC_VETERAN_MINIBOSS": [
-            "Minibos Heretic Veteran",
-            "💀",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_HERETIC_SOLO_BOSS_HIGHLIGHT": [
-            "Bos Heretic (Highlight)",
-            "👻",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_HERETIC_VETERAN_BOSS_HIGHLIGHT": [
-            "Bos Heretic Veteran (Highlight)",
-            "👻",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_HERETIC_SOLO_ENDBOSS_UNCOMMON": [
-            "Bos Akhir Heretic (Biru)",
+        "HERETIC_CHIEF": [
+            "Heretic Chief",
             "👹",
             "DUNGEON_BOSS"
         ],
-        "RANDOM_HERETIC_VETERAN_ENDBOSS_UNCOMMON": [
-            "Bos Akhir Heretic Veteran (Biru)",
-            "👹",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_KEEPER_SOLO_MINIBOSS": [
-            "Minibos Keeper",
-            "🌿💀",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_KEEPER_VETERAN_MINIBOSS": [
-            "Minibos Keeper Veteran",
-            "🌿💀",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_KEEPER_SOLO_BOSS_HIGHLIGHT": [
-            "Bos Keeper (Highlight)",
-            "🌿👻",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_KEEPER_VETERAN_BOSS_HIGHLIGHT": [
-            "Bos Keeper Veteran (Highlight)",
-            "🌿👻",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_KEEPER_SOLO_ENDBOSS_RARE_CHIEFTAIN": [
-            "Chieftain Keeper (Ungu)",
+        "KEEPER_CHIEFTAIN": [
+            "Keeper Chieftain",
             "🌿👹",
             "DUNGEON_BOSS"
         ],
-        "RANDOM_KEEPER_VETERAN_ENDBOSS_RARE_CHIEFTAIN": [
-            "Chieftain Keeper Veteran (Ungu)",
-            "🌿👹",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_MORGANA_SOLO_MINIBOSS": [
-            "Minibos Morgana",
-            "⚔️💀",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_MORGANA_VETERAN_MINIBOSS": [
-            "Minibos Morgana Veteran",
-            "⚔️💀",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_MORGANA_SOLO_BOSS_HIGHLIGHT": [
-            "Bos Morgana (Highlight)",
-            "⚔️👻",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_MORGANA_VETERAN_BOSS_HIGHLIGHT": [
-            "Bos Morgana Veteran (Highlight)",
-            "⚔️👻",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_MORGANA_SOLO_ENDBOSS_UNCOMMON": [
-            "Bos Akhir Morgana (Biru)",
+        "MORGANA_COMMANDER": [
+            "Morgana Commander",
             "⚔️👹",
             "DUNGEON_BOSS"
         ],
-        "RANDOM_MORGANA_VETERAN_ENDBOSS_UNCOMMON": [
-            "Bos Akhir Morgana Veteran (Biru)",
-            "⚔️👹",
-            "DUNGEON_BOSS"
-        ],
-        "RANDOM_UNDEAD_SOLO_ENDBOSS_UNCOMMON_GENERAL": [
-            "Bos Akhir Undead (Umum)",
+        "UNDEAD_GENERAL": [
+            "Undead General",
             "💀👹",
             "DUNGEON_BOSS"
         ],
-        "SHRINE_FAME_BUFF": [
-            "Altar Peningkatan Fame",
-            "📈",
-            "SHRINE"
+        "AVALONIAN_HIGH_PRIEST": [
+            "Avalonian High Priest",
+            "💠👹",
+            "DUNGEON_BOSS"
         ],
-        "SHRINE_COMBAT_BUFF": [
-            "Altar Kekuatan Tempur",
+        "RANDOM_KEEPER_SOLO_BOSS_HIGHLIGHT": [
+            "Keeper Solo Boss (Highlight)",
+            "🌿👻",
+            "DUNGEON_BOSS"
+        ],
+        "RANDOM_MORGANA_SOLO_ENDBOSS_UNCOMMON": [
+            "Morgana Solo Endboss",
+            "⚔️👻",
+            "DUNGEON_BOSS"
+        ],
+        "SHRINE_COMBAT_POWER": [
+            "Might Shrine (Combat Power)",
             "💥",
             "SHRINE"
         ],
-        "SHRINE_DEFENSE_BUFF": [
-            "Altar Pertahanan",
+        "SHRINE_DEFENSE": [
+            "Protection Shrine (Defense)",
             "🛡️",
             "SHRINE"
         ],
-        "SHRINE_ENERGY_REGEN_BUFF": [
-            "Altar Regenerasi Energi",
-            "⚡",
+        "SHRINE_FAME": [
+            "Insight Shrine (Fame Buff)",
+            "📈",
             "SHRINE"
         ],
-        "SHRINE_HEALTH_REGEN_BUFF": [
-            "Altar Regenerasi HP",
-            "❤️",
-            "SHRINE"
-        ],
-        "SHRINE_COOLDOWN_REDUCTION_BUFF": [
-            "Altar Pengurangan Cooldown",
+        "SHRINE_COOLDOWN": [
+            "Cooldown Shrine",
             "⏳",
             "SHRINE"
         ],
-        "SHRINE_MOB_SPEED_BUFF": [
-            "Altar Kecepatan Gerak",
+        "SHRINE_HEALTH": [
+            "Regeneration Shrine (Health)",
+            "❤️",
+            "SHRINE"
+        ],
+        "SHRINE_ENERGY": [
+            "Energy Shrine",
+            "⚡",
+            "SHRINE"
+        ],
+        "SHRINE_SPEED": [
+            "Swiftness Shrine (Speed)",
             "🏃",
+            "SHRINE"
+        ],
+        "SHRINE_NON_COMBAT_BUFF": [
+            "Altar Buff Non-Tempur Umum",
+            "✨",
             "SHRINE"
         ],
         "LOOTCHEST_STANDARD": [
             "Peti Biasa (Hijau)",
-            "🟩"
+            "🟩",
+            "CHEST"
         ],
         "LOOTCHEST_UNCOMMON": [
             "Peti Tidak Biasa (Biru)",
-            "🟦"
+            "🟦",
+            "CHEST"
         ],
         "LOOTCHEST_RARE": [
             "Peti Langka (Ungu)",
-            "🟪"
+            "🟪",
+            "CHEST"
+        ],
+        "LOOTCHEST_EPIC": [
+            "Peti Epik (Emas)",
+            "🟨",
+            "CHEST"
         ],
         "LOOTCHEST_LEGENDARY": [
-            "Peti Legendaris (Emas)",
-            "🟨"
+            "Peti Legendaris (Emas Terang)",
+            "🌟",
+            "CHEST"
+        ],
+        "LOOTCHEST_BOSS": [
+            "Peti Boss",
+            "👑",
+            "CHEST"
+        ],
+        "LOOTCHEST_MINIBOSS": [
+            "Peti Minibos",
+            "🏆",
+            "CHEST"
         ],
         "LOOTCHEST_KEEPER_SOLO_UNCOMMON": [
             "Peti Keeper Solo (Biru)",
-            "🟦"
+            "🟦",
+            "CHEST"
         ],
         "LOOTCHEST_ANNIVERSARY_SOLO_LOOTCHEST_BOSS": [
             "Peti Boss Anniversary Solo",
-            "🎂"
+            "🎂",
+            "CHEST"
         ]
     },
     "timestamps": {}
