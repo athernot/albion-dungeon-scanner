@@ -1,0 +1,34 @@
+{
+    "UNCLEFROST": [
+        "Uncle Frost (Event)",
+        "🥶"
+    ],
+    "ANNIVERSARY_TITAN": [
+        "Anniversary Titan (Event)",
+        "⚔️"
+    ],
+    "SHRINE_FAME": [
+        "Altar Peningkatan Fame",
+        "📈"
+    ],
+    "LOOTCHEST_STANDARD_SOLO": [
+        "Peti Biasa (Hijau)",
+        "🟩"
+    ],
+    "LOOTCHEST_UNCOMMON_SOLO": [
+        "Peti Tidak Biasa (Biru)",
+        "🟦"
+    ],
+    "LOOTCHEST_RARE_SOLO": [
+        "Peti Langka (Ungu)",
+        "🟪"
+    ],
+    "LOOTCHEST_LEGENDARY_SOLO": [
+        "Peti Legendaris (Emas)",
+        "🟨"
+    ],
+    "LOOTCHEST_BOSS_SOLO": [
+        "Peti Boss",
+        "👑"
+    ]
+}
