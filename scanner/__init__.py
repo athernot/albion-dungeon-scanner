@@ -6,7 +6,7 @@ import shutil
 import xml.etree.ElementTree as ET
 from collections import Counter
 import json
-import re
+import re # Pastikan re diimpor
 import logging
 
 # Impor instance manager dan dapatkan logger untuk modul ini
@@ -18,6 +18,7 @@ logger = logging_manager.get_logger(__name__)
 # --- Konstanta ---
 DATABASE_FILE = 'database.json'
 TRANSLATIONS = {}
+MIN_MOB_TIER_TO_SCAN = 6 # Hanya proses mob Tier 6 ke atas
 
 # Definisi Tipe Entitas
 TYPE_EVENT_BOSS = "EVENT_BOSS"
@@ -69,13 +70,11 @@ def load_translations():
         with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
             TRANSLATIONS = data.get("translations", {})
-        # PANGGILAN YANG BENAR SEKARANG MENGGUNAKAN LOGGER YANG VALID
         logger.info(f"Database dimuat dari {DATABASE_FILE}. Total entri: {len(TRANSLATIONS)}")
     except (json.JSONDecodeError, IOError) as e:
         logger.error(f"Gagal memuat atau membaca file database '{DATABASE_FILE}': {e}")
         TRANSLATIONS = {}
 
-# Memuat terjemahan saat modul diimpor
 load_translations()
 
 
@@ -108,7 +107,6 @@ class AlbionDungeonScanner:
                 filename = os.path.basename(file_path)
                 temp_file_path = os.path.join(temp_path, filename)
                 try:
-                    # File yang tidak bisa dipindah berarti sedang digunakan oleh game
                     shutil.move(file_path, temp_file_path)
                     shutil.move(temp_file_path, file_path)
                 except IOError:
@@ -116,17 +114,24 @@ class AlbionDungeonScanner:
                     logger.info(f"File aktif terdeteksi: {filename}")
                 except Exception as e:
                     logger.error(f"Error saat memeriksa file {filename}: {e}")
-                    # Pastikan file dikembalikan jika terjadi error setelah berhasil dipindah
                     if os.path.exists(temp_file_path) and not os.path.exists(file_path):
                         shutil.move(temp_file_path, file_path)
             
-            # Hapus folder temporary
             shutil.rmtree(temp_path, ignore_errors=True)
 
-    def _extract_tier_from_id(self, item_id: str) -> str:
-        """Mengekstrak informasi Tier (misal: T4) dari ID item."""
+    def _extract_tier_from_id(self, item_id: str) -> int | None:
+        """
+        Mengekstrak informasi Tier numerik dari ID item.
+        Contoh: "T6_MOB_..." akan mengembalikan 6.
+        Mengembalikan None jika tidak ada pola Tier yang ditemukan.
+        """
         match = re.match(r"T(\d+)_", item_id.upper())
-        return f"T{match.group(1)}" if match else "Unknown Tier"
+        if match:
+            try:
+                return int(match.group(1))
+            except ValueError:
+                return None
+        return None
 
     def _classify_entity(self, clean_id: str) -> tuple[str | None, str | None]:
         """
@@ -135,13 +140,11 @@ class AlbionDungeonScanner:
         """
         item_id_upper = clean_id.upper()
 
-        # 1. Cek database untuk klasifikasi eksplisit
         if clean_id in TRANSLATIONS:
             entry = TRANSLATIONS[clean_id]
             if len(entry) >= 3:
-                return clean_id, entry[2] # Return ID asli dan tipenya dari DB
+                return clean_id, entry[2] 
 
-        # 2. Jika tidak ada di DB, coba klasifikasi berdasarkan kata kunci
         if "LOOTCHEST" in item_id_upper or "BOOKCHEST" in item_id_upper:
             for key, canonical_id in CANONICAL_CHEST_MAP.items():
                 if key in item_id_upper:
@@ -149,19 +152,24 @@ class AlbionDungeonScanner:
             return CANONICAL_CHEST_MAP.get("LOOTCHEST"), TYPE_CHEST
 
         if "BOSS" in item_id_upper:
-            for event_key in ["UNCLEFROST", "ANNIVERSARY_TITAN"]:
+            for event_key in ["UNCLEFROST", "ANNIVERSARY_TITAN", "EVENT_WINTER"]: # Tambahkan event key jika perlu
                 if event_key in item_id_upper:
-                    return event_key, TYPE_EVENT_BOSS
+                    # Coba dapatkan nama yang lebih spesifik jika ada di TRANSLATIONS
+                    if clean_id in TRANSLATIONS and TRANSLATIONS[clean_id][2] == TYPE_EVENT_BOSS:
+                        return clean_id, TYPE_EVENT_BOSS
+                    return event_key, TYPE_EVENT_BOSS # Fallback ke key generik event
             
             for key, canonical_id in CANONICAL_BOSS_MAP.items():
                 if key in item_id_upper:
+                     # Coba dapatkan nama yang lebih spesifik jika ada di TRANSLATIONS
+                    if clean_id in TRANSLATIONS and TRANSLATIONS[clean_id][2] == TYPE_DUNGEON_BOSS:
+                        return clean_id, TYPE_DUNGEON_BOSS
                     return canonical_id, TYPE_DUNGEON_BOSS
             return CANONICAL_BOSS_MAP["BOSS"], TYPE_DUNGEON_BOSS
 
         if "SHRINE" in item_id_upper:
             return "SHRINE_NON_COMBAT_BUFF", TYPE_SHRINE
 
-        # 3. Fallback ke klasifikasi sebagai MOB jika mengandung kata kunci faksi
         if any(faction in item_id_upper for faction in MOB_FACTION_KEYWORDS):
             return clean_id, TYPE_MOB
 
@@ -214,25 +222,67 @@ class AlbionDungeonScanner:
             
             canonical_id, item_type = self._classify_entity(clean_id)
 
-            if item_type in results:
-                results[item_type].update([canonical_id])
+            if item_type in [TYPE_EVENT_BOSS, TYPE_DUNGEON_BOSS, TYPE_CHEST, TYPE_SHRINE]:
+                # Jika canonical_id adalah ID spesifik dari TRANSLATIONS, gunakan itu.
+                # Jika tidak, gunakan hasil dari CANONICAL_MAP.
+                # Ini memastikan bos dengan nama spesifik tidak dioverwrite oleh ID generik.
+                final_id_to_store = canonical_id 
+                if clean_id in TRANSLATIONS and TRANSLATIONS[clean_id][2] == item_type:
+                    final_id_to_store = clean_id
+
+                results[item_type].update([final_id_to_store])
+
             elif item_type == TYPE_MOB:
-                tier = self._extract_tier_from_id(clean_id)
-                if tier not in results["mobs_by_tier"]:
-                    results["mobs_by_tier"][tier] = Counter()
-                results["mobs_by_tier"][tier].update([clean_id])
-            elif clean_id:
+                tier_num = self._extract_tier_from_id(clean_id)
+                
+                # Filter mob berdasarkan Tier
+                if tier_num is not None and tier_num < MIN_MOB_TIER_TO_SCAN:
+                    logger.debug(f"Mob {clean_id} (Tier T{tier_num}) dilewati karena di bawah T{MIN_MOB_TIER_TO_SCAN}.")
+                    continue # Lewati mob jika Tier-nya di bawah minimum
+
+                # Jika tier_num None (tidak ada info Tier di ID) atau >= MIN_MOB_TIER_TO_SCAN, proses mob
+                tier_str = f"T{tier_num}" if tier_num is not None else "Unknown Tier"
+                
+                if tier_str not in results["mobs_by_tier"]:
+                    results["mobs_by_tier"][tier_str] = Counter()
+                results["mobs_by_tier"][tier_str].update([clean_id])
+            elif clean_id: # Hanya log jika clean_id ada isinya
                 logger.debug(f"Entitas tidak terklasifikasi: {clean_id}")
         
         logger.info(f"Pemindaian selesai. Menemukan: Bos Event({sum(results[TYPE_EVENT_BOSS].values())}), Bos Dungeon({sum(results[TYPE_DUNGEON_BOSS].values())}), Peti({sum(results[TYPE_CHEST].values())}), Altar({sum(results[TYPE_SHRINE].values())})")
+        
+        # Hitung total mob yang dilaporkan
+        total_mobs_reported = 0
+        for tier_counter in results["mobs_by_tier"].values():
+            total_mobs_reported += sum(tier_counter.values())
+        logger.info(f"Total mob (T{MIN_MOB_TIER_TO_SCAN}+ atau Tier Tidak Diketahui) yang dilaporkan: {total_mobs_reported}")
 
-        # PERBAIKAN: Kembalikan dictionary dengan kunci berupa konstanta yang diharapkan oleh GUI
-        return {
-            TYPE_EVENT_BOSS: results[TYPE_EVENT_BOSS],
-            TYPE_DUNGEON_BOSS: results[TYPE_DUNGEON_BOSS],
-            TYPE_CHEST: results[TYPE_CHEST],
-            TYPE_SHRINE: results[TYPE_SHRINE],
-            "mobs_by_tier": results["mobs_by_tier"],
-            "exits": results["exits"],
-            "used_files": results["used_files"],
-        }
+        # Logika baru: Sesuaikan informasi peti berdasarkan keberadaan mob T6+
+        any_high_tier_mobs_found = False
+        if results["mobs_by_tier"]: # Periksa apakah ada entri mob sama sekali
+            for tier_str_key, mob_counts in results["mobs_by_tier"].items():
+                if sum(mob_counts.values()) > 0: # Jika ada mob di tier ini (setelah filter)
+                    # Asumsikan tier_str_key adalah "TX" atau "Unknown Tier"
+                    # Jika "Unknown Tier", kita anggap itu bisa jadi relevan
+                    # Jika "TX", kita periksa apakah X >= MIN_MOB_TIER_TO_SCAN
+                    if tier_str_key == "Unknown Tier":
+                        any_high_tier_mobs_found = True
+                        break
+                    try:
+                        numeric_tier = int(tier_str_key[1:]) # Ambil angka dari "TX"
+                        if numeric_tier >= MIN_MOB_TIER_TO_SCAN:
+                            any_high_tier_mobs_found = True
+                            break
+                    except ValueError: # Jika format tier_str_key bukan "TX"
+                        logger.warning(f"Format tier tidak dikenal di mobs_by_tier: {tier_str_key}")
+                        # Anda bisa memutuskan apakah ini dihitung sebagai 'high_tier_mob_found'
+                        # Untuk sekarang, kita anggap tidak jika formatnya aneh.
+                        pass
+
+
+        if not any_high_tier_mobs_found and sum(results[TYPE_CHEST].values()) > 0:
+            logger.info(f"Tidak ada mob T{MIN_MOB_TIER_TO_SCAN}+ yang ditemukan dalam pemindaian ini. Menyembunyikan {sum(results[TYPE_CHEST].values())} peti dari laporan.")
+            results[TYPE_CHEST].clear() # Kosongkan peti jika tidak ada mob T6+
+
+        return results
+
