@@ -39,7 +39,3 @@ For support or questions, ~~[join our Discord community]()~~ or [open an issue](
 ## Disclaimer
 
 If someone messes up with this code, I cannot be held responsible for any consequences.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
