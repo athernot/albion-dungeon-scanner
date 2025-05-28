@@ -4,76 +4,48 @@ import sys
 from scanner.utils.singleton import Singleton
 
 
-class Logger(object, metaclass=Singleton):
+class LoggingManager(object, metaclass=Singleton):
     """
-    A singleton logger class for managing application logs.
-
-    Attributes:
-        rootLogger (logging.Logger): The root logger instance.
-
-    Methods:
-        __init__(): Initializes the logger with default settings.
-        setRootLogLevel(level): Sets the log level for the root logger.
-        getLogger(name): Retrieves a logger with the specified name.
+    Sebuah manajer singleton untuk mengkonfigurasi dan menyediakan logger untuk aplikasi.
     """
-
-    rootLogger = None
 
     def __init__(self):
         """
-        Initializes the logger with default settings.
-
-        The logger is configured with a stream handler (console output) and a file handler (logs file).
-        Default log level is set to INFO.
+        Menginisialisasi root logger dengan pengaturan default.
         """
-        self.rootLogger = logging.getLogger()
-        self.rootLogger.setLevel(logging.INFO)
+        self.root_logger = logging.getLogger()
+        # Set level default ke INFO
+        self.root_logger.setLevel(logging.INFO)
 
+        # Buat formatter hanya sekali
         formatter = logging.Formatter(
-            "{asctime} - {levelname:>3.3} - {name:>16.16} - {message}", style="{"
+            "{asctime} - {levelname:>5.5} - {name:^20.20} - {message}", style="{"
         )
-        streamHandler = logging.StreamHandler(sys.stdout)
-        streamHandler.setFormatter(formatter)
 
-        fileHandler = logging.FileHandler("cleavercheat.log")
-        fileHandler.setFormatter(formatter)
+        # Hanya tambahkan handler jika belum ada, untuk mencegah duplikasi
+        if not self.root_logger.handlers:
+            # Handler untuk menampilkan log di konsol
+            stream_handler = logging.StreamHandler(sys.stdout)
+            stream_handler.setFormatter(formatter)
+            self.root_logger.addHandler(stream_handler)
 
-        self.rootLogger.addHandler(streamHandler)
-        self.rootLogger.addHandler(fileHandler)
+            # Handler untuk menyimpan log ke file
+            file_handler = logging.FileHandler("dungeon_scanner.log", mode='w') # mode 'w' untuk overwrite log setiap kali jalan
+            file_handler.setFormatter(formatter)
+            self.root_logger.addHandler(file_handler)
 
-    def setRootLogLevel(self, level):
+    def get_logger(self, name: str) -> logging.Logger:
         """
-        Set the log level for the root logger.
+        Mengambil instance logger dengan nama yang spesifik.
 
         Args:
-            level (int): The logging level to be set.
-        """
-        self.rootLogger.setLevel(level)
-
-    def getLogger(self, name):
-        """
-        Retrieve a logger with the specified name.
-
-        Args:
-            name (str): The name of the logger.
+            name (str): Nama logger (biasanya __name__ dari modul pemanggil).
 
         Returns:
-            logging.Logger: The logger instance.
+            logging.Logger: Instance logger yang dikonfigurasi.
         """
         return logging.getLogger(name)
 
 
-logger = Logger()
-
-
-def LoggerManager(logName):
-    """
-    Convenience function to retrieve a logger instance with the specified name.
-
-    Args:
-        logName (str): The name of the logger.
-
-    Returns:
-        logging.Logger: The logger instance.
-    """
-    return logger.getLogger(logName)
+# Buat satu instance dari manager untuk digunakan di seluruh aplikasi
+logging_manager = LoggingManager()
