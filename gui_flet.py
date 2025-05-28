@@ -14,27 +14,27 @@ CONFIG_FILE = "config.ini"
 
 # Peta warna untuk teks di Flet (MENGGUNAKAN ft.Colors)
 COLOR_MAP_FLET = {
-    "LOOTCHEST_STANDARD": ft.colors.GREEN_ACCENT_700,
-    "BOOKCHEST_STANDARD": ft.colors.GREEN_ACCENT_700,
-    "LOOTCHEST_UNCOMMON": ft.colors.BLUE_ACCENT_700,
-    "BOOKCHEST_UNCOMMON": ft.colors.BLUE_ACCENT_700,
-    "LOOTCHEST_RARE": ft.colors.PURPLE_ACCENT_700,
-    "BOOKCHEST_RARE": ft.colors.PURPLE_ACCENT_700,
-    "LOOTCHEST_EPIC": ft.colors.AMBER_ACCENT_700,
-    "LOOTCHEST_LEGENDARY": ft.colors.YELLOW_ACCENT_700,
-    "LOOTCHEST_BOSS": ft.colors.ORANGE_ACCENT_700,
-    "LOOTCHEST_MINIBOSS": ft.colors.PINK_ACCENT_700,
-    "BOSS_MINIBOSS_GENERIC": ft.colors.PINK_ACCENT_700,
-    "BOSS_ENDBOSS_GENERIC": ft.colors.DEEP_ORANGE_ACCENT_700,
-    "BOSS_HIGHLIGHT_GENERIC": ft.colors.RED_ACCENT_700,
-    "BOSS_GENERIC": ft.colors.RED_700,
-    "UNCLEFROST": ft.colors.LIGHT_BLUE_ACCENT_700,
-    "ANNIVERSARY_TITAN": ft.colors.AMBER_ACCENT_700,
-    "SHRINE_NON_COMBAT_BUFF": ft.colors.CYAN_ACCENT_700,
+    "LOOTCHEST_STANDARD": ft.Colors.GREEN_ACCENT_700,
+    "BOOKCHEST_STANDARD": ft.Colors.GREEN_ACCENT_700,
+    "LOOTCHEST_UNCOMMON": ft.Colors.BLUE_ACCENT_700,
+    "BOOKCHEST_UNCOMMON": ft.Colors.BLUE_ACCENT_700,
+    "LOOTCHEST_RARE": ft.Colors.PURPLE_ACCENT_700,
+    "BOOKCHEST_RARE": ft.Colors.PURPLE_ACCENT_700,
+    "LOOTCHEST_EPIC": ft.Colors.AMBER_ACCENT_700,
+    "LOOTCHEST_LEGENDARY": ft.Colors.YELLOW_ACCENT_700,
+    "LOOTCHEST_BOSS": ft.Colors.ORANGE_ACCENT_700,
+    "LOOTCHEST_MINIBOSS": ft.Colors.PINK_ACCENT_700,
+    "BOSS_MINIBOSS_GENERIC": ft.Colors.PINK_ACCENT_700,
+    "BOSS_ENDBOSS_GENERIC": ft.Colors.DEEP_ORANGE_ACCENT_700,
+    "BOSS_HIGHLIGHT_GENERIC": ft.Colors.RED_ACCENT_700,
+    "BOSS_GENERIC": ft.Colors.RED_700,
+    "UNCLEFROST": ft.Colors.LIGHT_BLUE_ACCENT_700,
+    "ANNIVERSARY_TITAN": ft.Colors.AMBER_ACCENT_700,
+    "SHRINE_NON_COMBAT_BUFF": ft.Colors.CYAN_ACCENT_700,
     # Warna default dan header
-    "DEFAULT_ITEM_COLOR": ft.colors.WHITE, # Default jika ID tidak ada di map
-    "HEADER_COLOR": ft.colors.BLUE_GREY_200,
-    "CATEGORY_TITLE_COLOR": ft.colors.BLUE_GREY_100,
+    "DEFAULT_ITEM_COLOR": ft.Colors.WHITE,
+    "HEADER_COLOR": ft.Colors.BLUE_GREY_200,
+    "CATEGORY_TITLE_COLOR": ft.Colors.BLUE_GREY_100,
 }
 
 
@@ -47,9 +47,7 @@ def main(page: ft.Page):
     page.padding = 10
 
     # --- Font Setup ---
-    assets_dir_for_fonts = "assets" # Flet akan mencari di subfolder 'assets' relatif terhadap skrip
-    # Jika folder 'assets' ada di direktori yang sama dengan gui_flet.py:
-    # assets_dir_for_fonts = os.path.join(os.path.dirname(__file__), "assets")
+    assets_dir_for_fonts = "assets" 
     
     page.fonts = {
         "NotoSans": os.path.join(assets_dir_for_fonts, "NotoSans-Regular.ttf"), 
@@ -82,7 +80,7 @@ def main(page: ft.Page):
     def update_ui_status(new_status: str):
         page.data["status_text"] = new_status
         status_label.value = new_status
-        if page.client_storage: # Memastikan page sudah ter-render dan bisa diupdate
+        if page.client_storage: 
             page.update()
         
     def update_results_display_flet():
@@ -90,19 +88,16 @@ def main(page: ft.Page):
         report_data = generate_report_for_flet(page) 
         
         for text_content, text_color, item_id_for_style in report_data:
-            # text_color adalah nilai warna langsung dari COLOR_MAP_FLET
-            current_style = ft.TextStyle(font_family="NotoSans") # Gunakan font utama
+            current_style = ft.TextStyle(font_family="NotoSans") 
             if text_color:
                 current_style.color = text_color
             
-            # Khusus untuk header, kita bisa buat lebih besar/tebal
-            if item_id_for_style == "HEADER": # Menggunakan penanda khusus untuk header
+            if item_id_for_style == "HEADER": 
                 current_style.weight = ft.FontWeight.BOLD
-                current_style.size = 18 # Sedikit lebih besar
+                current_style.size = 18 
             elif item_id_for_style == "CATEGORY":
                 current_style.weight = ft.FontWeight.BOLD
                 current_style.size = 16
-
 
             results_list_view.controls.append(
                 ft.Text(text_content, style=current_style, selectable=True)
@@ -158,7 +153,8 @@ def main(page: ft.Page):
     def browse_path_flet(e):
         directory_picker.get_directory_path(dialog_title="Pilih Folder Instalasi Albion Online")
 
-    browse_button = ft.ElevatedButton("Browse", icon=ft.icons.FOLDER_OPEN, on_click=browse_path_flet, width=130, height=40, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=8)))
+    # --- PERBAIKAN ICON DI SINI ---
+    browse_button = ft.ElevatedButton("Browse", icon=ft.Icons.FOLDER_OPEN, on_click=browse_path_flet, width=130, height=40, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=8)))
 
     def reset_session_flet(e):
         page.data["floor_count"] = 0
@@ -170,7 +166,6 @@ def main(page: ft.Page):
     def scan_thread_worker_flet(p: ft.Page):
         p.data["is_scanning"] = True
         
-        # Update UI dari main thread menggunakan page.run() atau page.run_thread_safe()
         def _update_button_state(disabled: bool, text: str):
             scan_button.disabled = disabled
             scan_button.text = text
@@ -221,7 +216,8 @@ def main(page: ft.Page):
         except Exception as err:
             update_ui_status(f"Status: Error saat scan - {err}")
             if p.client_storage:
-                 p.show_snack_bar(ft.SnackBar(ft.Text(f"Error: {err}", color=ft.colors.WHITE), open=True, bgcolor=ft.colors.ERROR)) # ft.Colors.ERROR seharusnya
+                 # --- PERBAIKAN WARNA DI SINI ---
+                 p.show_snack_bar(ft.SnackBar(ft.Text(f"Error: {err}", color=ft.Colors.WHITE), open=True, bgcolor=ft.Colors.RED_ACCENT_700)) 
         
         p.data["is_scanning"] = False
         p.run_thread_safe(_update_button_state, False, "SCAN / UPDATE LANTAI")
@@ -237,8 +233,9 @@ def main(page: ft.Page):
         thread = threading.Thread(target=scan_thread_worker_flet, args=(page,), daemon=True)
         thread.start()
 
-    scan_button = ft.ElevatedButton("SCAN / UPDATE LANTAI", icon=ft.icons.SEARCH, on_click=start_scan_flet, height=40, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=8)))
-    reset_button = ft.ElevatedButton("RESET SESI", icon=ft.icons.REFRESH, on_click=reset_session_flet, height=40, color=ft.colors.WHITE, bgcolor=ft.colors.RED_ACCENT_700, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=8)))
+    # --- PERBAIKAN ICON DAN WARNA DI SINI ---
+    scan_button = ft.ElevatedButton("SCAN / UPDATE LANTAI", icon=ft.Icons.SEARCH, on_click=start_scan_flet, height=40, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=8)))
+    reset_button = ft.ElevatedButton("RESET SESI", icon=ft.Icons.REFRESH, on_click=reset_session_flet, height=40, color=ft.Colors.WHITE, bgcolor=ft.Colors.RED_ACCENT_700, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=8)))
 
     page.add(
         ft.Row(
@@ -249,10 +246,12 @@ def main(page: ft.Page):
             [scan_button, reset_button],
             alignment=ft.MainAxisAlignment.CENTER, spacing=10
         ),
-        ft.Divider(height=5, color=ft.colors.TRANSPARENT), 
+        # --- PERBAIKAN WARNA DI SINI ---
+        ft.Divider(height=5, color=ft.Colors.TRANSPARENT), 
         ft.Container(
             content=results_list_view,
-            border=ft.border.all(1, ft.colors.OUTLINE), 
+            # --- PERBAIKAN WARNA DI SINI ---
+            border=ft.border.all(1, ft.Colors.OUTLINE), 
             border_radius=8,
             padding=10,
             expand=True, 
@@ -263,10 +262,10 @@ def main(page: ft.Page):
     load_path_flet(page) 
 
 def _format_single_category_flet(p: ft.Page, category_title: str, items_counter: Counter) -> list:
-    lines = [] # list of (text_content, color_value, item_id_or_category_type_for_style)
+    lines = [] 
     if not items_counter: return lines
     
-    lines.append((f"\n {category_title}", COLOR_MAP_FLET["CATEGORY_TITLE_COLOR"], "CATEGORY")) # "CATEGORY" untuk styling
+    lines.append((f"\n {category_title}", COLOR_MAP_FLET["CATEGORY_TITLE_COLOR"], "CATEGORY")) 
     
     sorted_items = sorted(items_counter.items(), key=lambda item: p.data["current_translations"].get(item[0], (item[0], "❓"))[0])
     
@@ -314,11 +313,12 @@ def generate_report_for_flet(p: ft.Page) -> list:
     display_data.extend(_format_single_category_flet(p, "[ Total Boss Dungeon ]", total_cumulative[TYPE_DUNGEON_BOSS]))
     display_data.extend(_format_single_category_flet(p, "[ Total Peti ]", total_cumulative[TYPE_CHEST]))
     display_data.extend(_format_single_category_flet(p, "[ Total Altar Buff ]", total_cumulative[TYPE_SHRINE]))
-    display_data.append(("\n" + "="*57, None, None)) # Pemisah
+    display_data.append(("\n" + "="*57, None, None)) 
     last_floor_exits = p.data["findings_by_floor"][-1].get("exits", set()) if p.data["findings_by_floor"] else set()
     has_next_floor_exit = any("EXIT" in e and "ENTER" not in e for e in last_floor_exits)
     floor_status_text = "Ada Pintu Keluar ke Lantai Berikut" if has_next_floor_exit else "Lantai Terakhir atau Hanya Pintu Masuk"
-    display_data.append((f" (*) Status Lantai Saat Ini ({p.data['floor_count']}): {floor_status_text}", ft.colors.LIGHT_BLUE_ACCENT_700, None)) # Perbaikan di sini juga
+    # --- PERBAIKAN WARNA DAN ICON DI SINI ---
+    display_data.append((f" (*) Status Lantai Saat Ini ({p.data['floor_count']}): {floor_status_text}", ft.Colors.LIGHT_BLUE_ACCENT_700, None)) 
     return display_data
 
 if __name__ == "__main__":
