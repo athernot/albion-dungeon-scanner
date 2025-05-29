@@ -26,5 +26,8 @@ gui = {cmd = "python gui.py"}  # <-- Tambahkan ini
 scan_dpg = "python gui_dearpygui.py"    
 scan_flet = "python gui_flet.py"
 
+[Discord]
+webhook_url = "https://discord.com/api/webhooks/1377371053977899051/QBQYAWt5XKlgg2K85qoBKxc7-JZEszRjKd-dDxkyvvWaYN8VwPdx6nUisnAgAYhbx_Is"
+
 [tool.pdm]
 distribution = false

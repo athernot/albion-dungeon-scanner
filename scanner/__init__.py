@@ -6,10 +6,9 @@ import shutil
 import xml.etree.ElementTree as ET
 from collections import Counter
 import json
-import re # Pastikan re diimpor
+import re
 import logging
 
-# Impor instance manager dan dapatkan logger untuk modul ini
 from scanner.utils.logging import logging_manager
 from scanner.utils.binary import Binary
 
@@ -18,7 +17,7 @@ logger = logging_manager.get_logger(__name__)
 # --- Konstanta ---
 DATABASE_FILE = 'database.json'
 TRANSLATIONS = {}
-MIN_MOB_TIER_TO_SCAN = 6 # Hanya proses mob Tier 6 ke atas
+MIN_MOB_TIER_TO_SCAN = 6
 
 # Definisi Tipe Entitas
 TYPE_EVENT_BOSS = "EVENT_BOSS"
@@ -27,22 +26,7 @@ TYPE_CHEST = "CHEST"
 TYPE_SHRINE = "SHRINE"
 TYPE_MOB = "MOB"
 
-# Peta untuk kanonisasi ID (membuat ID generik dari ID spesifik)
-CANONICAL_CHEST_MAP = {
-    "LOOTCHEST_LEGENDARY": "LOOTCHEST_LEGENDARY",
-    "LOOTCHEST_EPIC": "LOOTCHEST_EPIC",
-    "LOOTCHEST_RARE": "LOOTCHEST_RARE",
-    "LOOTCHEST_UNCOMMON": "LOOTCHEST_UNCOMMON",
-    "LOOTCHEST_STANDARD": "LOOTCHEST_STANDARD",
-    "LOOTCHEST_BOSS": "LOOTCHEST_BOSS",
-    "LOOTCHEST_MINIBOSS": "LOOTCHEST_MINIBOSS",
-    "BOOKCHEST_RARE": "BOOKCHEST_RARE",
-    "BOOKCHEST_UNCOMMON": "BOOKCHEST_UNCOMMON",
-    "BOOKCHEST_STANDARD": "BOOKCHEST_STANDARD",
-    "BOOKCHEST": "BOOKCHEST_STANDARD",
-    "LOOTCHEST": "LOOTCHEST_STANDARD"
-}
-
+# Peta untuk kanonisasi bos
 CANONICAL_BOSS_MAP = {
     "ENDBOSS": "BOSS_ENDBOSS_GENERIC",
     "MINIBOSS": "BOSS_MINIBOSS_GENERIC",
@@ -50,11 +34,9 @@ CANONICAL_BOSS_MAP = {
     "BOSS": "BOSS_GENERIC"
 }
 
-# Daftar folder template yang akan dipindai
+# Daftar folder, pola, dan kata kunci yang relevan
 TEMPLATE_FOLDERS = ["GREEN", "YELLOW", "RED", "BLACK", "AVALON", "CORRUPTED", "HELLGATE", "EXPEDITION", "ROADS", "MISTS"]
-# Daftar kata kunci untuk layer yang relevan di dalam file XML
 REWARD_LAYER_PATTERNS = ["reward", "chest", "loot", "encounter", "mob", "shrine"]
-# Daftar faksi mob untuk klasifikasi fallback
 MOB_FACTION_KEYWORDS = ["RANDOM", "MOB", "KEEPER", "HERETIC", "MORGANA", "UNDEAD", "AVALON", "AVALONIAN"]
 
 
@@ -101,7 +83,6 @@ class AlbionDungeonScanner:
         for dungeon_dir in self._get_dungeon_dirs():
             temp_path = os.path.join(dungeon_dir, ".temp_scanner_check")
             os.makedirs(temp_path, exist_ok=True)
-
             bin_files = glob.glob(os.path.join(dungeon_dir, "*.bin"))
             for file_path in bin_files:
                 filename = os.path.basename(file_path)
@@ -116,15 +97,10 @@ class AlbionDungeonScanner:
                     logger.error(f"Error saat memeriksa file {filename}: {e}")
                     if os.path.exists(temp_file_path) and not os.path.exists(file_path):
                         shutil.move(temp_file_path, file_path)
-            
             shutil.rmtree(temp_path, ignore_errors=True)
 
     def _extract_tier_from_id(self, item_id: str) -> int | None:
-        """
-        Mengekstrak informasi Tier numerik dari ID item.
-        Contoh: "T6_MOB_..." akan mengembalikan 6.
-        Mengembalikan None jika tidak ada pola Tier yang ditemukan.
-        """
+        """Mengekstrak informasi Tier numerik dari ID item."""
         match = re.match(r"T(\d+)_", item_id.upper())
         if match:
             try:
@@ -136,40 +112,51 @@ class AlbionDungeonScanner:
     def _classify_entity(self, clean_id: str) -> tuple[str | None, str | None]:
         """
         Mengklasifikasikan entitas berdasarkan ID-nya.
-        Mengembalikan tuple (canonical_id, item_type).
+        Mengembalikan tuple (ID generik, tipe item).
         """
         item_id_upper = clean_id.upper()
 
+        # --- PERUBAHAN 1: Abaikan semua BOOKCHEST ---
+        if "BOOKCHEST" in item_id_upper:
+            return None, None
+
+        # Cek terjemahan spesifik dulu (untuk bos bernama, dll)
         if clean_id in TRANSLATIONS:
             entry = TRANSLATIONS[clean_id]
-            if len(entry) >= 3:
-                return clean_id, entry[2] 
+            if len(entry) >= 3 and entry[2] != TYPE_CHEST: # Jangan gunakan ini untuk peti
+                return clean_id, entry[2]
 
-        if "LOOTCHEST" in item_id_upper or "BOOKCHEST" in item_id_upper:
-            for key, canonical_id in CANONICAL_CHEST_MAP.items():
-                if key in item_id_upper:
-                    return canonical_id, TYPE_CHEST
-            return CANONICAL_CHEST_MAP.get("LOOTCHEST"), TYPE_CHEST
+        # --- PERUBAHAN 2: Kelompokkan LOOTCHEST berdasarkan warna/rarity ---
+        if "LOOTCHEST" in item_id_upper:
+            if "LEGENDARY" in item_id_upper or "BOSS" in item_id_upper:
+                return "CHEST_GOLD", TYPE_CHEST
+            if "EPIC" in item_id_upper:
+                return "CHEST_PURPLE", TYPE_CHEST
+            if "RARE" in item_id_upper:
+                return "CHEST_BLUE", TYPE_CHEST
+            if "UNCOMMON" in item_id_upper or "STANDARD" in item_id_upper:
+                return "CHEST_GREEN", TYPE_CHEST
+            return "CHEST_GREEN", TYPE_CHEST # Fallback untuk peti biasa
 
+        # Klasifikasi Bos (tidak berubah)
         if "BOSS" in item_id_upper:
-            for event_key in ["UNCLEFROST", "ANNIVERSARY_TITAN", "EVENT_WINTER"]: # Tambahkan event key jika perlu
+            for event_key in ["UNCLEFROST", "ANNIVERSARY_TITAN", "EVENT_WINTER"]:
                 if event_key in item_id_upper:
-                    # Coba dapatkan nama yang lebih spesifik jika ada di TRANSLATIONS
                     if clean_id in TRANSLATIONS and TRANSLATIONS[clean_id][2] == TYPE_EVENT_BOSS:
                         return clean_id, TYPE_EVENT_BOSS
-                    return event_key, TYPE_EVENT_BOSS # Fallback ke key generik event
-            
+                    return event_key, TYPE_EVENT_BOSS
             for key, canonical_id in CANONICAL_BOSS_MAP.items():
                 if key in item_id_upper:
-                     # Coba dapatkan nama yang lebih spesifik jika ada di TRANSLATIONS
                     if clean_id in TRANSLATIONS and TRANSLATIONS[clean_id][2] == TYPE_DUNGEON_BOSS:
                         return clean_id, TYPE_DUNGEON_BOSS
                     return canonical_id, TYPE_DUNGEON_BOSS
             return CANONICAL_BOSS_MAP["BOSS"], TYPE_DUNGEON_BOSS
 
+        # Klasifikasi Altar (tidak berubah)
         if "SHRINE" in item_id_upper:
             return "SHRINE_NON_COMBAT_BUFF", TYPE_SHRINE
 
+        # Klasifikasi Mob (tidak berubah)
         if any(faction in item_id_upper for faction in MOB_FACTION_KEYWORDS):
             return clean_id, TYPE_MOB
 
@@ -200,7 +187,8 @@ class AlbionDungeonScanner:
             if "EXIT" in filename.upper() or "ENTER" in filename.upper():
                 results["exits"].add(filename)
             
-            if any(skip.upper() in filename.upper() for skip in ["BACKDROP", "MASTER", "EXIT", "ENTER", "LIGHT", "DECORATION", "TERRAIN"]):
+            if any(skip.upper() in filename.upper() for skip in ["BACKDROP", "DECORATION", "TERRAIN"]):
+                logger.info(f"Melewatkan file dekoratif/latar belakang: {filename}")
                 continue
 
             try:
@@ -220,69 +208,47 @@ class AlbionDungeonScanner:
         for item_id_xml in all_item_ids_from_xml:
             clean_id = item_id_xml.replace("SpawnPoint_", "")
             
-            canonical_id, item_type = self._classify_entity(clean_id)
+            # Gunakan fungsi klasifikasi yang sudah diperbarui
+            generic_id, item_type = self._classify_entity(clean_id)
 
             if item_type in [TYPE_EVENT_BOSS, TYPE_DUNGEON_BOSS, TYPE_CHEST, TYPE_SHRINE]:
-                # Jika canonical_id adalah ID spesifik dari TRANSLATIONS, gunakan itu.
-                # Jika tidak, gunakan hasil dari CANONICAL_MAP.
-                # Ini memastikan bos dengan nama spesifik tidak dioverwrite oleh ID generik.
-                final_id_to_store = canonical_id 
-                if clean_id in TRANSLATIONS and TRANSLATIONS[clean_id][2] == item_type:
-                    final_id_to_store = clean_id
-
-                results[item_type].update([final_id_to_store])
+                results[item_type].update([generic_id])
 
             elif item_type == TYPE_MOB:
                 tier_num = self._extract_tier_from_id(clean_id)
-                
-                # Filter mob berdasarkan Tier
                 if tier_num is not None and tier_num < MIN_MOB_TIER_TO_SCAN:
-                    logger.debug(f"Mob {clean_id} (Tier T{tier_num}) dilewati karena di bawah T{MIN_MOB_TIER_TO_SCAN}.")
-                    continue # Lewati mob jika Tier-nya di bawah minimum
-
-                # Jika tier_num None (tidak ada info Tier di ID) atau >= MIN_MOB_TIER_TO_SCAN, proses mob
+                    continue
                 tier_str = f"T{tier_num}" if tier_num is not None else "Unknown Tier"
-                
                 if tier_str not in results["mobs_by_tier"]:
                     results["mobs_by_tier"][tier_str] = Counter()
                 results["mobs_by_tier"][tier_str].update([clean_id])
-            elif clean_id: # Hanya log jika clean_id ada isinya
-                logger.debug(f"Entitas tidak terklasifikasi: {clean_id}")
+            elif clean_id and generic_id is None and item_type is None:
+                # Hanya log jika item tidak sengaja diabaikan (bukan bookchest)
+                if "BOOKCHEST" not in clean_id.upper():
+                    logger.debug(f"Entitas tidak terklasifikasi atau diabaikan: {clean_id}")
         
         logger.info(f"Pemindaian selesai. Menemukan: Bos Event({sum(results[TYPE_EVENT_BOSS].values())}), Bos Dungeon({sum(results[TYPE_DUNGEON_BOSS].values())}), Peti({sum(results[TYPE_CHEST].values())}), Altar({sum(results[TYPE_SHRINE].values())})")
         
-        # Hitung total mob yang dilaporkan
-        total_mobs_reported = 0
-        for tier_counter in results["mobs_by_tier"].values():
-            total_mobs_reported += sum(tier_counter.values())
+        total_mobs_reported = sum(sum(c.values()) for c in results["mobs_by_tier"].values())
         logger.info(f"Total mob (T{MIN_MOB_TIER_TO_SCAN}+ atau Tier Tidak Diketahui) yang dilaporkan: {total_mobs_reported}")
 
-        # Logika baru: Sesuaikan informasi peti berdasarkan keberadaan mob T6+
         any_high_tier_mobs_found = False
-        if results["mobs_by_tier"]: # Periksa apakah ada entri mob sama sekali
+        if results["mobs_by_tier"]:
             for tier_str_key, mob_counts in results["mobs_by_tier"].items():
-                if sum(mob_counts.values()) > 0: # Jika ada mob di tier ini (setelah filter)
-                    # Asumsikan tier_str_key adalah "TX" atau "Unknown Tier"
-                    # Jika "Unknown Tier", kita anggap itu bisa jadi relevan
-                    # Jika "TX", kita periksa apakah X >= MIN_MOB_TIER_TO_SCAN
+                if sum(mob_counts.values()) > 0:
                     if tier_str_key == "Unknown Tier":
                         any_high_tier_mobs_found = True
                         break
                     try:
-                        numeric_tier = int(tier_str_key[1:]) # Ambil angka dari "TX"
+                        numeric_tier = int(tier_str_key[1:])
                         if numeric_tier >= MIN_MOB_TIER_TO_SCAN:
                             any_high_tier_mobs_found = True
                             break
-                    except ValueError: # Jika format tier_str_key bukan "TX"
-                        logger.warning(f"Format tier tidak dikenal di mobs_by_tier: {tier_str_key}")
-                        # Anda bisa memutuskan apakah ini dihitung sebagai 'high_tier_mob_found'
-                        # Untuk sekarang, kita anggap tidak jika formatnya aneh.
+                    except (ValueError, IndexError):
                         pass
 
-
         if not any_high_tier_mobs_found and sum(results[TYPE_CHEST].values()) > 0:
-            logger.info(f"Tidak ada mob T{MIN_MOB_TIER_TO_SCAN}+ yang ditemukan dalam pemindaian ini. Menyembunyikan {sum(results[TYPE_CHEST].values())} peti dari laporan.")
-            results[TYPE_CHEST].clear() # Kosongkan peti jika tidak ada mob T6+
+            logger.info(f"Tidak ada mob T{MIN_MOB_TIER_TO_SCAN}+ yang ditemukan, menyembunyikan {sum(results[TYPE_CHEST].values())} peti dari laporan.")
+            results[TYPE_CHEST].clear()
 
         return results
-
