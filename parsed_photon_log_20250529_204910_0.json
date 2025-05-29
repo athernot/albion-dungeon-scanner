@@ -1,0 +1,3087 @@
+[
+  {
+    "timestamp": "2025-05-29 20:49:54.526",
+    "packet_size_bytes": 400,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 9,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 10,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 11,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 12,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 13,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 14,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 15,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 16,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 17,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 18,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 19,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 20,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 21,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 22,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 23,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 24,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 25,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 26,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 27,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 28,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 29,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 30,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 31,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 32,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 33,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 34,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 35,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 36,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 37,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 38,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 39,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 40,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 41,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 42,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 43,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 44,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 45,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 46,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 47,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 48,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 49,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 50,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 51,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 52,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 53,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 54,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 55,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 56,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 57,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 58,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 59,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 60,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 61,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 62,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 63,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 64,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 65,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 66,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 67,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 68,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 69,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 70,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 71,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.526",
+    "packet_size_bytes": 400,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 9,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 10,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 11,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 12,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 13,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 14,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 15,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 16,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 17,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 18,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 19,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 20,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 21,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 22,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 23,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 24,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 25,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 26,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 27,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 28,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 29,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 30,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 31,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 32,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 33,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 34,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 35,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 36,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 37,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 38,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 39,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 40,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 41,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 42,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 43,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 44,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 45,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 46,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 47,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 48,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 49,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 50,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 51,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 52,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 53,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 54,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 55,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 56,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 57,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 58,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 59,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 60,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 61,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 62,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 63,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 64,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 65,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 66,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 67,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 68,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 69,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 70,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 71,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 72,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 73,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 74,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 75,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 76,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 77,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 78,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 79,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 80,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 81,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 82,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 83,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 84,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 85,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 86,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 87,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 88,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 89,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 90,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 91,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 92,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 93,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 94,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 95,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 96,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 97,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 98,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 99,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 100,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 101,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 102,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 103,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 104,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 105,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 106,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 107,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 108,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 109,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 110,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 111,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 112,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 113,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 114,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 115,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 116,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 117,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 118,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 119,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 120,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 121,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 122,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 123,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 124,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 125,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 126,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 127,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 128,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 129,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 130,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 131,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 132,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 133,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 134,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 135,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 136,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 137,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 138,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 139,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 140,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 141,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 142,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 143,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 144,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 145,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 146,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 147,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 148,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 149,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 150,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 151,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 152,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 153,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 154,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 155,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 156,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 157,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 158,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 159,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 160,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 161,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 162,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 163,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 164,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 165,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 166,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 167,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 168,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 169,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 170,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 171,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 172,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 173,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 174,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 175,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 176,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 177,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 178,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 179,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 180,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 181,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 182,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 183,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 184,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 185,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 186,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 187,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 188,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 189,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 190,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 191,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 192,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 193,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 194,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 195,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 196,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 197,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 198,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 199,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 200,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 201,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 202,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 203,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 204,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 205,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 206,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 207,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 208,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 209,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 210,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 211,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 212,
+        "command_type": 0,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.527",
+    "packet_size_bytes": 56,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 2,
+        "command_payload_length_bytes": 32,
+        "operation_code": 0,
+        "details_parsed": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.569",
+    "packet_size_bytes": 76,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 3,
+        "command_payload_length_bytes": 32,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.570",
+    "packet_size_bytes": 400,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 44,
+        "command_payload_length_bytes": 2523525639,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.570",
+    "packet_size_bytes": 85,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 41,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.612",
+    "packet_size_bytes": 47,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 3,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.613",
+    "packet_size_bytes": 163,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 107,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 12,
+        "command_payload_length_bytes": 0,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.654",
+    "packet_size_bytes": 32,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.675",
+    "packet_size_bytes": 154,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 110,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.685",
+    "packet_size_bytes": 110,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 66,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.748",
+    "packet_size_bytes": 78,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 34,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.749",
+    "packet_size_bytes": 32,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.770",
+    "packet_size_bytes": 1145,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 99,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 49,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 82,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 34,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 6,
+        "command_payload_length_bytes": 32,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 6,
+        "command_payload_length_bytes": 136,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 6,
+        "command_payload_length_bytes": 47,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 6,
+        "command_payload_length_bytes": 402,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 6,
+        "command_payload_length_bytes": 144,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.781",
+    "packet_size_bytes": 1053,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 175,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 135,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 100,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 327,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 6,
+        "command_payload_length_bytes": 179,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 6,
+        "command_payload_length_bytes": 53,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.781",
+    "packet_size_bytes": 873,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 167,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 422,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 171,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 53,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.784",
+    "packet_size_bytes": 1150,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 410,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 143,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 57,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 32,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 6,
+        "command_payload_length_bytes": 100,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 6,
+        "command_payload_length_bytes": 100,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 6,
+        "command_payload_length_bytes": 100,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 6,
+        "command_payload_length_bytes": 12,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 6,
+        "command_payload_length_bytes": 76,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.784",
+    "packet_size_bytes": 548,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 68,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 67,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 70,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 58,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 6,
+        "command_payload_length_bytes": 60,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 6,
+        "command_payload_length_bytes": 62,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 6,
+        "command_payload_length_bytes": 28,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 6,
+        "command_payload_length_bytes": 27,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.784",
+    "packet_size_bytes": 1031,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 1007,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.785",
+    "packet_size_bytes": 800,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 9,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 10,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 11,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 12,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 13,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 14,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 15,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 16,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 17,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 18,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 19,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 20,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 21,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 22,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 23,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 24,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 25,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 26,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 27,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 28,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 29,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 30,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 31,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 32,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 33,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 34,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 35,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 36,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 37,
+        "command_type": 6,
+        "command_payload_length_bytes": 36,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.785",
+    "packet_size_bytes": 1200,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 257,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 147,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 16,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 8,
+        "command_payload_length_bytes": 720,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.785",
+    "packet_size_bytes": 1029,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 8,
+        "command_payload_length_bytes": 1005,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.786",
+    "packet_size_bytes": 1200,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 8,
+        "command_payload_length_bytes": 1176,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.786",
+    "packet_size_bytes": 558,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 8,
+        "command_payload_length_bytes": 534,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.786",
+    "packet_size_bytes": 1185,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 375,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 43,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 22,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 21,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 6,
+        "command_payload_length_bytes": 263,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 6,
+        "command_payload_length_bytes": 65,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 6,
+        "command_payload_length_bytes": 53,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 6,
+        "command_payload_length_bytes": 62,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 6,
+        "command_payload_length_bytes": 31,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 9,
+        "command_type": 6,
+        "command_payload_length_bytes": 54,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 10,
+        "command_type": 6,
+        "command_payload_length_bytes": 52,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.797",
+    "packet_size_bytes": 372,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 9,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 10,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 11,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 12,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 13,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 14,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 15,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 16,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 17,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.798",
+    "packet_size_bytes": 661,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 6,
+        "command_payload_length_bytes": 71,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 9,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 62,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 65,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 6,
+        "command_payload_length_bytes": 67,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 6,
+        "command_payload_length_bytes": 12,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 6,
+        "command_payload_length_bytes": 91,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 6,
+        "command_payload_length_bytes": 97,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 6,
+        "command_payload_length_bytes": 67,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.798",
+    "packet_size_bytes": 192,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 5,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 6,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 7,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 8,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.819",
+    "packet_size_bytes": 280,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.861",
+    "packet_size_bytes": 477,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 433,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.935",
+    "packet_size_bytes": 353,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 6,
+        "command_payload_length_bytes": 163,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 108,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 14,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.956",
+    "packet_size_bytes": 549,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 6,
+        "command_payload_length_bytes": 257,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 4,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.967",
+    "packet_size_bytes": 32,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.998",
+    "packet_size_bytes": 219,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 6,
+        "command_payload_length_bytes": 135,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:54.998",
+    "packet_size_bytes": 32,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 1,
+        "command_payload_length_bytes": 8,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:55.009",
+    "packet_size_bytes": 280,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:55.123",
+    "packet_size_bytes": 280,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:55.236",
+    "packet_size_bytes": 280,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:55.339",
+    "packet_size_bytes": 280,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-29 20:49:55.412",
+    "packet_size_bytes": 280,
+    "commands": [
+      {
+        "command_index_in_packet": 0,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 1,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 2,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      },
+      {
+        "command_index_in_packet": 3,
+        "command_type": 7,
+        "command_payload_length_bytes": 55,
+        "details_parsed": false
+      }
+    ]
+  }
+]

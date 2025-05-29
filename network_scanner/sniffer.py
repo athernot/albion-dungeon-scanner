@@ -9,20 +9,25 @@ import sys
 import time
 import struct
 import binascii
-import json # Tambahkan import json
+import json
 
-# --- Fungsi select_interface() sedikit disesuaikan ---
 def select_interface_and_show():
     """Menampilkan antarmuka dan meminta pengguna memasukkan nama antarmuka dari output scapy."""
     print("[*] Mencari antarmuka jaringan yang tersedia (menggunakan Scapy)...")
-    scapy.show_interfaces() # Tampilkan antarmuka versi Scapy
+    try:
+        scapy.show_interfaces() # Tampilkan antarmuka versi Scapy
+    except Exception as e:
+        print(f"[!] Gagal menampilkan antarmuka dengan scapy: {e}")
+        print("[!] Pastikan Npcap terinstal dengan benar dan Anda memiliki hak akses yang cukup.")
+        print("[!] Anda mungkin perlu menjalankan 'pdm run python' dan 'from scapy.all import *; show_interfaces()' secara manual untuk debug.")
+        return None
+        
     print("-" * 70)
     print("[!] PERHATIKAN DAFTAR DI ATAS (dari scapy.show_interfaces()).")
     print("[!] Salin dan tempel nama antarmuka yang TEPAT (dari kolom 'Name') yang ingin Anda gunakan.")
     iface_name = input(">> Masukkan nama antarmuka dari daftar di atas: ")
     return iface_name
 
-# --- Kelas PacketSniffer() tetap sama ---
 class PacketSniffer(Thread):
     def __init__(self, packet_queue: Queue, bpf_filter: str, interface_name: str):
         super().__init__(daemon=True)
@@ -46,6 +51,11 @@ class PacketSniffer(Thread):
             self.stop_event.set()
             return
         
+        if not self.interface_name:
+            print("[!] Nama antarmuka tidak valid. Keluar dari thread sniffer.")
+            self.stop_event.set()
+            return
+            
         print(f"[*] Sniffer dimulai... Antarmuka: '{self.interface_name}', Filter: '{self.bpf_filter}'")
 
         def process_packet(packet):
@@ -61,10 +71,12 @@ class PacketSniffer(Thread):
                 stop_filter=lambda p: self.stop_event.is_set()
             )
         except Exception as e:
-            if "Npcap" in str(e) or "pcap" in str(e).lower():
-                print(f"[!] Error Npcap/Pcap: {e}. Pastikan Npcap terinstal dengan benar.")
+            if "Npcap" in str(e) or "pcap" in str(e).lower() or "WinPcap" in str(e):
+                print(f"[!] Error Npcap/Pcap/WinPcap: {e}. Pastikan Npcap (atau WinPcap jika sistem lama) terinstal dengan benar dan mode kompatibilitas API WinPcap diaktifkan saat instalasi Npcap.")
             elif isinstance(e, (PermissionError, OSError)):
                 print(f"[!] Error Hak Akses: {e}. Jalankan sebagai Administrator.")
+            elif "Network adapter" in str(e) or "No such device" in str(e):
+                print(f"[!] Error: Antarmuka jaringan '{self.interface_name}' tidak ditemukan atau tidak valid. Periksa nama antarmuka dari output 'scapy.show_interfaces()'.")
             else:
                 print(f"[!] Error sniffer tak terduga: {e}")
         finally:
@@ -76,19 +88,18 @@ class PacketSniffer(Thread):
             print("\n[*] Menghentikan sniffer...")
             self.stop_event.set()
 
-# --- Tipe Parameter Photon (tetap sama) ---
 PHOTON_PARAM_TYPE_NULL = 0x2a
-PHOTON_PARAM_TYPE_DICT = 0x44 # Tidak diimplementasikan parsingnya di sini
+PHOTON_PARAM_TYPE_DICT = 0x44
 PHOTON_PARAM_TYPE_STRING = 0x73
 PHOTON_PARAM_TYPE_BYTE = 0x62
 PHOTON_PARAM_TYPE_SHORT = 0x6b
 PHOTON_PARAM_TYPE_INTEGER = 0x69
 PHOTON_PARAM_TYPE_LONG = 0x6c
-PHOTON_PARAM_TYPE_FLOAT = 0x66 # Tidak diimplementasikan parsingnya
-PHOTON_PARAM_TYPE_DOUBLE = 0x64 # Tidak diimplementasikan parsingnya
+PHOTON_PARAM_TYPE_FLOAT = 0x66
+PHOTON_PARAM_TYPE_DOUBLE = 0x64
 PHOTON_PARAM_TYPE_BOOLEAN = 0x6f
 PHOTON_PARAM_TYPE_BYTE_ARRAY = 0x78
-PHOTON_PARAM_TYPE_OBJECT_ARRAY = 0x79 # Tidak diimplementasikan parsingnya
+PHOTON_PARAM_TYPE_OBJECT_ARRAY = 0x79
 
 def parse_photon_parameters(payload: bytes, offset: int) -> tuple[dict, int]:
     params = {}
@@ -102,8 +113,7 @@ def parse_photon_parameters(payload: bytes, offset: int) -> tuple[dict, int]:
             param_type = payload[current_offset + 1]
             current_offset += 2
             value = None
-            original_bytes_val = None # Untuk menyimpan representasi byte array
-
+            
             if param_type == PHOTON_PARAM_TYPE_STRING:
                 if current_offset + 2 > len(payload): break
                 str_len = struct.unpack(">H", payload[current_offset : current_offset + 2])[0]
@@ -139,128 +149,120 @@ def parse_photon_parameters(payload: bytes, offset: int) -> tuple[dict, int]:
                 current_offset += 4
                 if current_offset + array_len > len(payload): break
                 byte_val = payload[current_offset : current_offset + array_len]
-                # Coba decode sebagai string, jika gagal, simpan sebagai hex
                 try:
-                    value = byte_val.decode('utf-8', errors='ignore')
-                    if not value.isprintable() or len(value.strip()) == 0: # Jika tidak bisa dicetak atau string kosong
+                    decoded_str = byte_val.decode('utf-8', errors='ignore')
+                    if all(32 <= ord(char) <= 126 for char in decoded_str.strip()) and len(decoded_str.strip()) > 0 : 
+                        value = decoded_str.strip()
+                    else:
                          value = f"hex:{binascii.hexlify(byte_val).decode()}"
                 except:
                     value = f"hex:{binascii.hexlify(byte_val).decode()}"
                 current_offset += array_len
-            else: # Tipe tidak dikenal atau tidak dihandle
-                # Untuk tipe yang tidak kita parse nilainya secara spesifik,
-                # kita bisa mencoba lewati berdasarkan perkiraan ukuran umum atau hentikan.
-                # Untuk saat ini kita hentikan saja agar tidak salah parse.
-                # print(f"  [Debug] Tipe parameter tidak dikenal: {hex(param_type)} pada offset {current_offset-2}")
+            else:
                 break 
             
             params[param_code] = value
-    except Exception as e:
-        # print(f"  [Debug] Exception saat parsing parameter: {e} pada offset {current_offset}")
+    except Exception:
         pass
     return params, current_offset
 
 def extract_structured_photon_data(payload: bytes) -> list:
-    """
-    Menganalisis payload Photon dan MENGEMBALIKAN LIST berisi data terstruktur
-    dari perintah yang berhasil diparsing.
-    """
     parsed_commands_in_packet = []
-    if not payload or len(payload) < 12: # Minimal panjang header photon
+    if not payload or len(payload) < 12:
         return parsed_commands_in_packet
 
-    # Header Photon Global:
-    # peer_id = struct.unpack(">H", payload[0:2])[0]
-    # flags = payload[2]
     command_count = payload[3]
-    # server_time_stamp = struct.unpack(">I", payload[4:8])[0]
-    # challenge = struct.unpack(">I", payload[8:12])[0]
     current_offset = 12
 
-    for _ in range(command_count):
-        if current_offset + 12 > len(payload): # Minimal panjang header perintah
+    for i in range(command_count):
+        if current_offset + 12 > len(payload):
             break
 
         cmd_type = payload[current_offset]
-        # channel_id = payload[current_offset + 1]
-        # cmd_flags = payload[current_offset + 2]
-        # reserved_byte = payload[current_offset + 3]
         cmd_len = struct.unpack(">I", payload[current_offset + 4 : current_offset + 8])[0]
-        # sequence_number = struct.unpack(">I", payload[current_offset + 8 : current_offset + 12])[0]
+        data_offset = current_offset + 12
         
-        data_offset = current_offset + 12 # Awal dari data aktual di dalam perintah
-        
-        command_data = {"command_type": cmd_type}
+        command_data = {
+            "command_index_in_packet": i,
+            "command_type": cmd_type,
+            "command_payload_length_bytes": max(0, cmd_len - 12)
+        }
+        details_parsed_flag = False
 
-        if cmd_type == 4: # EventData (f=253)
-            if data_offset + 2 <= len(payload): # Cek panjang minimal untuk kode event & param count
-                # Photon V2 Operation Code -> di byte pertama setelah payload header perintah
-                op_code_f253 = payload[data_offset] # harusnya 0xfd atau 253
-                if op_code_f253 == 0xfd: # 253 (EventData)
-                    event_params, _ = parse_photon_parameters(payload, data_offset + 1) # Parameter dimulai setelah op_code 0xfd
-                    custom_event_code = event_params.get(0) # Kode Event Kustom di param key 0
-                    custom_event_data = event_params.get(1) # Data Event Kustom di param key 1
-                    
-                    if custom_event_code is not None:
-                        command_data["event_custom_code"] = custom_event_code
-                        if custom_event_data:
-                             command_data["event_data"] = custom_event_data
-                        parsed_commands_in_packet.append(command_data)
-
-        elif cmd_type == 6 or cmd_type == 7: # SendReliable / SendUnreliable
-            # Terkadang EventData dibungkus di dalam ini.
-            # Strukturnya: [0xfd (253)] [param_code_event_id (biasanya 0)] [param_type_event_id] [event_id_val]
-            #                 [param_code_data (biasanya 1)] [param_type_data] [data_val]
-            if data_offset + 1 < len(payload) and payload[data_offset] == 0xfd: # 253 (EventData)
+        if cmd_type == 4: 
+            if data_offset + 1 < len(payload) and payload[data_offset] == 0xfd: # 253
                 event_params, _ = parse_photon_parameters(payload, data_offset + 1)
                 custom_event_code = event_params.get(0)
                 custom_event_data = event_params.get(1)
-
                 if custom_event_code is not None:
                     command_data["event_custom_code"] = custom_event_code
                     if custom_event_data:
                         command_data["event_data"] = custom_event_data
-                    parsed_commands_in_packet.append(command_data)
+                    details_parsed_flag = True
         
-        elif cmd_type == 2: # OperationRequest
-            if data_offset + 1 <= len(payload): # Cek panjang minimal untuk kode operasi
+        elif cmd_type == 6 or cmd_type == 7: 
+            if data_offset + 1 < len(payload) and payload[data_offset] == 0xfd: 
+                event_params, _ = parse_photon_parameters(payload, data_offset + 1)
+                custom_event_code = event_params.get(0)
+                custom_event_data = event_params.get(1)
+                if custom_event_code is not None:
+                    command_data["embedded_event_custom_code"] = custom_event_code
+                    if custom_event_data:
+                        command_data["embedded_event_data"] = custom_event_data
+                    details_parsed_flag = True
+        
+        elif cmd_type == 2: 
+            if data_offset < len(payload):
                 op_code = payload[data_offset]
                 command_data["operation_code"] = op_code
-                op_params, _ = parse_photon_parameters(payload, data_offset + 1) # Parameter dimulai setelah op_code
+                op_params, _ = parse_photon_parameters(payload, data_offset + 1)
                 if op_params:
                     command_data["operation_parameters"] = op_params
-                parsed_commands_in_packet.append(command_data)
+                details_parsed_flag = True
+        
+        command_data["details_parsed_flag"] = details_parsed_flag
+        parsed_commands_in_packet.append(command_data)
 
         current_offset += cmd_len
-        if current_offset > len(payload): # Pencegahan jika cmd_len salah
+        if current_offset > len(payload): 
             break
             
     return parsed_commands_in_packet
-
 
 if __name__ == "__main__":
     print("[*] Mempersiapkan pemilihan antarmuka jaringan...")
     selected_iface_name = select_interface_and_show()
 
-    if not selected_iface_name:
+    if not selected_iface_name or selected_iface_name.strip() == "":
         print("[!] Tidak ada antarmuka yang dipilih atau input tidak valid. Keluar.")
         sys.exit(1)
 
     print(f"\n[*] Antarmuka '{selected_iface_name}' akan digunakan.\n")
 
+    # Daftar IP Server Albion - Gabungkan semua yang sudah kita temukan
     ALBION_SERVER_IPS = [
-        "5.45.187.211", "5.45.187.119", "5.45.187.30",
-        "5.45.187.213", "5.45.187.113", "5.45.187.219", "5.45.187.31", # Tambahan dari tes Anda
-        "193.123.235.150", "193.123.235.151" # East
+        "5.45.187.211", "5.45.187.119", "5.45.187.30",  # Original West
+        "5.45.187.213", "5.45.187.113",                # Dari resmon Anda sebelumnya
+        "5.45.187.219", "5.45.187.31",                 # Dari log test_scapy Anda
+        "5.45.187.49", "5.45.187.59",                  # Dari screenshot Wireshark awal
+        "5.45.187.64",                                 # Dari resmon Open World & Ava
+        "5.45.187.188",                                # IP BARU dari Ava Dungeon terakhir Anda
+        # Tambahkan IP lain dari ResMon jika ada saat di dungeon/open world yang belum tercakup
+        "193.123.235.150", "193.123.235.151" # Original East (jika masih relevan)
     ]
+    # Hapus duplikat dan urutkan untuk kerapian
+    ALBION_SERVER_IPS = sorted(list(set(ALBION_SERVER_IPS))) 
+    
+    print(f"[*] Daftar IP Server yang akan digunakan (setelah digabung dan diurutkan): {ALBION_SERVER_IPS}")
+    
     host_filter = " or ".join([f"host {ip}" for ip in ALBION_SERVER_IPS])
-    GAME_PORTS = [5056]
+    GAME_PORTS = [5056] 
     port_filter = " or ".join([f"port {port}" for port in GAME_PORTS])
     FINAL_BPF_FILTER = f"udp and ({host_filter}) and ({port_filter})"
 
     print(f"[*] Filter BPF yang akan digunakan: {FINAL_BPF_FILTER}")
 
-    packet_processing_queue = Queue(maxsize=10000) # Tingkatkan ukuran queue
+    packet_processing_queue = Queue(maxsize=10000)
     sniffer_thread = PacketSniffer(
         packet_processing_queue, FINAL_BPF_FILTER, interface_name=selected_iface_name
     )
@@ -277,7 +279,7 @@ if __name__ == "__main__":
     all_parsed_session_data = []
     output_filename_base = f"parsed_photon_log_{time.strftime('%Y%m%d_%H%M%S')}"
     file_counter = 0
-    max_entries_per_file = 5000 # Simpan setiap 5000 entri paket (bukan perintah)
+    max_entries_per_file = 5000 
     current_entries_in_file = 0
 
     try:
@@ -294,35 +296,32 @@ if __name__ == "__main__":
 
                 if payload:
                     parsed_commands = extract_structured_photon_data(payload)
-                    if parsed_commands: # Hanya proses jika ada perintah yang berhasil diparsing
-                        current_timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-                        ms_timestamp = f"{current_timestamp}.{int(time.time()*1000)%1000:03d}" # Tambah milidetik
+                    if parsed_commands: 
+                        current_timestamp_obj = time.time()
+                        ms_timestamp = f"{time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(current_timestamp_obj))}.{int(current_timestamp_obj * 1000) % 1000:03d}"
                         
                         packet_info = {
-                            "timestamp": ms_timestamp,
+                            "capture_timestamp_epoch": current_timestamp_obj,
+                            "timestamp_readable": ms_timestamp,
                             "packet_size_bytes": len(payload),
                             "commands": parsed_commands
                         }
                         all_parsed_session_data.append(packet_info)
                         current_entries_in_file +=1
-                        print(f"[*] Data dari paket pada {ms_timestamp} (Total Perintah: {len(parsed_commands)}) siap disimpan.")
-
-                        # Opsi untuk menampilkan live di console (bisa di-comment jika terlalu berisik)
-                        # print("\n" + "=" * 80)
-                        # print(f"| Paket Diterima pada {ms_timestamp} | Ukuran Payload: {len(payload)} bytes |")
-                        # print("=" * 80)
-                        # for cmd_idx, cmd in enumerate(parsed_commands):
-                        #     print(f"--- Perintah #{cmd_idx + 1} ---")
-                        #     for key, val in cmd.items():
-                        #         print(f"  {key}: {val}")
-                        # print("=" * 80)
+                        
+                        has_interesting_event = any(
+                            "event_custom_code" in cmd or "embedded_event_custom_code" in cmd 
+                            for cmd in parsed_commands
+                        )
+                        if has_interesting_event:
+                            print(f"[*] Paket MENARIK pada {ms_timestamp} (Total Perintah: {len(parsed_commands)}) siap disimpan.")
 
                         if current_entries_in_file >= max_entries_per_file:
                             current_filename = f"{output_filename_base}_{file_counter}.json"
                             with open(current_filename, 'w', encoding='utf-8') as f:
-                                json.dump(all_parsed_session_data, f, indent=2, ensure_ascii=False)
+                                json.dump(all_parsed_session_data, f, indent=2, ensure_ascii=False, sort_keys=False)
                             print(f"[*] Data disimpan ke file: {current_filename} ({len(all_parsed_session_data)} entri paket)")
-                            all_parsed_session_data = [] # Reset untuk file berikutnya
+                            all_parsed_session_data = [] 
                             current_entries_in_file = 0
                             file_counter += 1
             else:
@@ -332,15 +331,14 @@ if __name__ == "__main__":
     finally:
         if sniffer_thread.is_alive():
             sniffer_thread.stop()
-            sniffer_thread.join(timeout=5) # Beri waktu thread untuk berhenti
+            sniffer_thread.join(timeout=5)
         
-        # Simpan sisa data yang belum disimpan
         if all_parsed_session_data:
             current_filename = f"{output_filename_base}_{file_counter}.json"
             with open(current_filename, 'w', encoding='utf-8') as f:
-                json.dump(all_parsed_session_data, f, indent=2, ensure_ascii=False)
+                json.dump(all_parsed_session_data, f, indent=2, ensure_ascii=False, sort_keys=False)
             print(f"[*] Sisa data ({len(all_parsed_session_data)} entri paket) disimpan ke: {current_filename}")
-        elif file_counter == 0: # Jika tidak ada data sama sekali yang disimpan
+        elif file_counter == 0 and current_entries_in_file == 0:
              print("[*] Tidak ada data yang berhasil diparsing untuk disimpan.")
 
         print("[*] Program dihentikan.")
