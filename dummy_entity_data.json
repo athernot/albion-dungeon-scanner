@@ -1,0 +1,38 @@
+{
+    "MOB_AVALONIAN_ARCHER_T8": {
+        "ingame_id_key": "@MOB_T8_AVALONIAN_ARCHER",
+        "category": "MOB",
+        "faction": "AVALONIAN",
+        "display_type": "Archer"
+    },
+    "MOB_AVALONIAN_SPEARMAN_T8": {
+        "ingame_id_key": "@MOB_T8_AVALONIAN_SPEARMAN",
+        "category": "MOB",
+        "faction": "AVALONIAN",
+        "display_type": "Spearman"
+    },
+    "BOSS_AVALONIAN_BASILISK": {
+        "ingame_id_key": "@BOSS_T8_AVALONIAN_BASILISK",
+        "category": "BOSS",
+        "faction": "AVALONIAN",
+        "display_type": "Basilisk"
+    },
+    "CHEST_GREEN_COMMON": {
+        "ingame_id_key": "@CHEST_GREEN_COMMON_STANDARD",
+        "category": "CHEST_NORMAL",
+        "quality": "GREEN",
+        "display_type": "Green Chest"
+    },
+    "CHEST_BLUE_UNCOMMON": {
+        "ingame_id_key": "@CHEST_BLUE_UNCOMMON_STANDARD",
+        "category": "CHEST_NORMAL",
+        "quality": "BLUE",
+        "display_type": "Blue Chest"
+    },
+    "CHEST_GOLD_LEGENDARY_BOSS": {
+        "ingame_id_key": "@CHEST_GOLD_LEGENDARY_BOSS_AVA",
+        "category": "CHEST_BOSS",
+        "quality": "GOLD",
+        "display_type": "Gold Chest (Boss)"
+    }
+}
