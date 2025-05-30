@@ -1,200 +1,169 @@
-# file: build_database.py
-
-import os
-import glob
 import json
-import xml.etree.ElementTree as ET
-import configparser
-import re # Import modul regex
+import os
 
-# Import decrypter dari scanner yang sudah ada
-from scanner.utils.binary import Binary
-from scanner import TEMPLATE_FOLDERS # Menggunakan konstanta folder yang sudah ada
+# --- Konfigurasi Sumber Data (Simulasi) ---
+# Dalam implementasi nyata, ini bisa berupa URL atau path ke file yang diunduh
+# dari ao-bin-dumps dan AlbionLocalization.
+# Kita akan membuat file dummy untuk contoh ini.
 
-print("=========================================")
-print("=== Albion Dungeon Database Builder ===")
-print("=========================================")
+DUMMY_MOB_DATA_FILE = 'dummy_mob_data.json'
+DUMMY_LOCALIZATION_EN_FILE = 'dummy_localization_en.json'
+DUMMY_LOCALIZATION_ID_FILE = 'dummy_localization_id.json' # Contoh untuk Bahasa Indonesia
 
-CONFIG_FILE = "config.ini"
-DATABASE_FILE = "database.json"
-MIN_TIER_TO_REPORT = 6 # Hanya laporkan ID baru untuk Tier 6 ke atas
+DATABASE_OUTPUT_FILE = 'database.json'
 
-def get_albion_path():
-    """Membaca path Albion dari config.ini."""
-    if not os.path.exists(CONFIG_FILE):
-        print(f"\n[ERROR] File '{CONFIG_FILE}' tidak ditemukan.")
-        print("Harap jalankan GUI setidaknya sekali untuk membuat file ini dan mengatur path Albion.")
-        return None
-    
-    config = configparser.ConfigParser()
-    config.read(CONFIG_FILE)
-    path = config.get('Settings', 'ao-dir', fallback=None)
-    if not path or not os.path.isdir(path):
-        print(f"\n[ERROR] Path Albion di '{CONFIG_FILE}' tidak valid.")
-        print(f"Path saat ini: {path}")
-        return None
-    
-    return path
+# --- Fungsi Helper (Simulasi Parsing) ---
 
-def extract_tier_from_id(item_id: str) -> int | None:
+def create_dummy_data_files():
     """
-    Mengekstrak informasi Tier numerik dari ID item.
-    Contoh: "T6_MOB_..." akan mengembalikan 6.
-    Mengembalikan None jika tidak ada pola Tier yang ditemukan.
+    Membuat file data dummy untuk simulasi.
+    Di dunia nyata, Anda akan mengunduh dan mem-parse data dari ao-bin-dumps/AlbionLocalization.
     """
-    match = re.match(r"T(\d+)_", item_id.upper())
-    if match:
-        try:
-            return int(match.group(1))
-        except ValueError:
-            return None
-    return None
+    # Contoh data dari ao-bin-dumps (misalnya, monster)
+    mob_data = {
+        "UNIQUE_MOB_ID_AVALONIAN_ARCHER": {
+            "ingame_id": "@MOB_AVALONIAN_ARCHER_T8", # Ini adalah kunci untuk lokalisasi
+            "category": "MOB",
+            "faction": "AVALONIAN",
+            "display_type": "Archer" # Tipe umum untuk tampilan
+        },
+        "UNIQUE_MOB_ID_AVALONIAN_SPEARMAN": {
+            "ingame_id": "@MOB_AVALONIAN_SPEARMAN_T8",
+            "category": "MOB",
+            "faction": "AVALONIAN",
+            "display_type": "Spearman"
+        },
+        "UNIQUE_BOSS_ID_BASILISK": {
+            "ingame_id": "@BOSS_AVALONIAN_BASILISK",
+            "category": "BOSS",
+            "faction": "AVALONIAN",
+            "display_type": "Basilisk" # Bos bisa memiliki display_type sendiri
+        },
+        "CHEST_GREEN_STATIC_ID": { # Contoh ID untuk peti
+            "ingame_id": "@CHEST_GREEN_STATIC", # Kunci lokalisasi untuk nama peti
+            "category": "CHEST_NORMAL",
+            "quality": "GREEN",
+            "display_type": "Green Chest"
+        }
+    }
+    with open(DUMMY_MOB_DATA_FILE, 'w') as f:
+        json.dump(mob_data, f, indent=2)
+    print(f"File dummy '{DUMMY_MOB_DATA_FILE}' telah dibuat.")
 
-def generate_suggested_name(clean_id: str) -> str:
+    # Contoh data dari AlbionLocalization (Inggris)
+    localization_en = {
+        "@MOB_AVALONIAN_ARCHER_T8": "Avalonian Archer",
+        "@MOB_AVALONIAN_SPEARMAN_T8": "Avalonian Spearman",
+        "@BOSS_AVALONIAN_BASILISK": "Basilisk",
+        "@CHEST_GREEN_STATIC": "Green Chest"
+    }
+    with open(DUMMY_LOCALIZATION_EN_FILE, 'w') as f:
+        json.dump(localization_en, f, indent=2)
+    print(f"File dummy '{DUMMY_LOCALIZATION_EN_FILE}' telah dibuat.")
+
+    # Contoh data dari AlbionLocalization (Bahasa Indonesia)
+    localization_id = {
+        "@MOB_AVALONIAN_ARCHER_T8": "Pemanah Avalon",
+        "@MOB_AVALONIAN_SPEARMAN_T8": "Prajurit Tombak Avalon",
+        "@BOSS_AVALONIAN_BASILISK": "Basilisk",
+        "@CHEST_GREEN_STATIC": "Peti Hijau"
+    }
+    with open(DUMMY_LOCALIZATION_ID_FILE, 'w') as f:
+        json.dump(localization_id, f, indent=2)
+    print(f"File dummy '{DUMMY_LOCALIZATION_ID_FILE}' telah dibuat.")
+
+
+def load_json_data(filepath):
+    """Memuat data dari file JSON."""
+    if not os.path.exists(filepath):
+        print(f"Peringatan: File data '{filepath}' tidak ditemukan.")
+        return {}
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        print(f"Error: Gagal mem-parse JSON dari '{filepath}'.")
+        return {}
+    except Exception as e:
+        print(f"Error saat memuat '{filepath}': {e}")
+        return {}
+
+# --- Logika Utama build_database.py ---
+
+def build_database():
     """
-    Menghasilkan nama tampilan yang disarankan dari ID yang bersih.
-    Contoh: RANDOM_AVALON_ELITE_BOSS_CRYSTAL_BASILISK -> Avalon Elite Boss Crystal Basilisk
+    Membangun database.json dari sumber data yang telah diproses.
     """
-    name = clean_id
-    # Hapus prefiks umum yang tidak deskriptif
-    if name.startswith("RANDOM_"):
-        name = name[7:]
-    
-    # Hapus prefiks Tier karena Tier akan ditangani secara terpisah
-    name = re.sub(r"^T\d+_", "", name)
+    # Buat file dummy jika belum ada (hanya untuk keperluan demo ini)
+    if not (os.path.exists(DUMMY_MOB_DATA_FILE) and \
+            os.path.exists(DUMMY_LOCALIZATION_EN_FILE) and \
+            os.path.exists(DUMMY_LOCALIZATION_ID_FILE)):
+        print("Membuat file data dummy untuk pertama kali...")
+        create_dummy_data_files()
+        print("-" * 30)
 
-    # Ganti garis bawah dengan spasi
-    name = name.replace("_", " ")
+    # 1. Muat data dari sumber (simulasi)
+    #    Dalam implementasi nyata, ini akan melibatkan parsing XML/JSON dari ao-bin-dumps
+    #    dan file lokalisasi.
+    print(f"Memuat data master dari '{DUMMY_MOB_DATA_FILE}'...")
+    master_data = load_json_data(DUMMY_MOB_DATA_FILE)
 
-    # Ubah menjadi Title Case (huruf kapital di awal setiap kata)
-    name = name.title()
-    
-    # Perbaikan untuk akronim umum atau istilah spesifik
-    name = name.replace(" Cd ", " CD ") # Contoh: Corrupted Dungeon
-    name = name.replace(" Hce ", " HCE ") # Contoh: Hardcore Expedition
-    name = name.replace(" Rd ", " RD ")   # Contoh: Randomized Dungeon
-    name = name.replace(" Poi ", " POI ") # Contoh: Point of Interest
+    print(f"Memuat lokalisasi EN dari '{DUMMY_LOCALIZATION_EN_FILE}'...")
+    loc_en_data = load_json_data(DUMMY_LOCALIZATION_EN_FILE)
 
-    # Hapus spasi berlebih yang mungkin muncul
-    name = ' '.join(name.split())
-    
-    return name
+    print(f"Memuat lokalisasi ID dari '{DUMMY_LOCALIZATION_ID_FILE}'...")
+    loc_id_data = load_json_data(DUMMY_LOCALIZATION_ID_FILE)
 
-def main():
-    albion_path = get_albion_path()
-    if not albion_path:
+    if not master_data:
+        print("Error: Data master tidak bisa dimuat. Proses build database dibatalkan.")
         return
 
-    templates_base_path = os.path.join(albion_path, r"Albion-Online_Data\StreamingAssets\GameData\templates")
-    
-    if not os.path.isdir(templates_base_path):
-        print(f"\n[ERROR] Folder templates tidak ditemukan di: {templates_base_path}")
-        return
+    # 2. Proses dan gabungkan data
+    output_database = {}
+    print("\nMemproses entitas...")
 
-    print(f"\n[*] Memulai pemindaian file game di: {templates_base_path}")
-    
-    all_game_ids = set()
-    binary_decrypter = Binary().decrypter
+    for internal_id, entity_props in master_data.items():
+        ingame_loc_key = entity_props.get("ingame_id") # Kunci untuk mencari di file lokalisasi
 
-    for folder in TEMPLATE_FOLDERS:
-        dungeon_dir = os.path.join(templates_base_path, folder)
-        if not os.path.isdir(dungeon_dir):
-            continue
+        name_en = "Unknown"
+        name_id = "Tidak Diketahui" # Default untuk Bahasa Indonesia
 
-        print(f"    - Memindai folder '{folder}'...")
-        bin_files = glob.glob(os.path.join(dungeon_dir, "*.bin"))
-
-        for file_path in bin_files:
-            try:
-                decrypted_bytes = binary_decrypter.decrypt_binary_file(file_path)
-                decrypted_str = decrypted_bytes.decode("utf-8", errors='ignore')
-                root = ET.fromstring(decrypted_str)
-                
-                for tile in root.findall(".//tile[@name]"):
-                    item_id_xml = tile.attrib.get("name", "")
-                    if item_id_xml.startswith("SpawnPoint_"):
-                        clean_id = item_id_xml.replace("SpawnPoint_", "")
-                        all_game_ids.add(clean_id)
-            except Exception:
-                pass # Abaikan file yang gagal diproses
-
-    if not all_game_ids:
-        print("\n[ERROR] Tidak ada ID yang berhasil diekstrak dari file game.")
-        return
-
-    print(f"\n[*] Selesai! Ditemukan total {len(all_game_ids)} ID unik di semua file game.")
-
-    known_db_ids = set()
-    if os.path.exists(DATABASE_FILE):
-        with open(DATABASE_FILE, 'r', encoding='utf-8') as f:
-            try:
-                data = json.load(f)
-                known_db_ids = set(data.get("translations", {}).keys())
-            except json.JSONDecodeError:
-                print(f"[WARNING] Gagal membaca {DATABASE_FILE}. File mungkin korup.")
-        print(f"[*] Ditemukan {len(known_db_ids)} ID di file {DATABASE_FILE} saat ini.")
-    else:
-        print(f"[WARNING] File {DATABASE_FILE} tidak ditemukan. Semua ID akan dianggap baru.")
-
-    newly_found_ids_unfiltered = all_game_ids - known_db_ids
-    
-    if not newly_found_ids_unfiltered:
-        print("\n[SUCCESS] Database Anda sudah sinkron. Tidak ada ID baru yang ditemukan.")
-        return
-
-    print(f"\n[*] Total ID baru yang belum difilter: {len(newly_found_ids_unfiltered)}")
-    print(f"[*] Menerapkan filter untuk Tier {MIN_TIER_TO_REPORT} ke atas (atau tanpa info Tier eksplisit pada ID)...")
-
-    newly_found_ids_filtered = set()
-    for new_id in newly_found_ids_unfiltered:
-        tier = extract_tier_from_id(new_id)
-        # Sertakan ID jika tidak ada info Tier eksplisit ATAU jika Tier >= MIN_TIER_TO_REPORT
-        if tier is None or tier >= MIN_TIER_TO_REPORT:
-            newly_found_ids_filtered.add(new_id)
-    
-    if not newly_found_ids_filtered:
-        print(f"\n[INFO] Tidak ada ID baru yang memenuhi kriteria Tier {MIN_TIER_TO_REPORT}+ (atau tanpa info Tier).")
-        return
-
-    print("\n--------------------------------------------------------------------------")
-    print(f"*** Ditemukan {len(newly_found_ids_filtered)} ID BARU (Tier {MIN_TIER_TO_REPORT}+ atau Tanpa Info Tier) yang belum ada di {DATABASE_FILE}: ***")
-    
-    new_ids_by_type_for_display = {"CHEST": [], "BOSS": [], "MOB": [], "SHRINE": [], "OTHER": []}
-    
-    for new_id in sorted(list(newly_found_ids_filtered)):
-        suggested_name = generate_suggested_name(new_id)
-        tier_num = extract_tier_from_id(new_id)
-        tier_str = f" (Tier: T{tier_num})" if tier_num is not None else " (Tier: N/A)"
-        
-        display_entry = (new_id, suggested_name, tier_str)
-
-        if "LOOTCHEST" in new_id.upper() or "BOOKCHEST" in new_id.upper():
-            new_ids_by_type_for_display["CHEST"].append(display_entry)
-        elif "BOSS" in new_id.upper() or "ENDBOSS" in new_id.upper() or "MINIBOSS" in new_id.upper():
-            new_ids_by_type_for_display["BOSS"].append(display_entry)
-        elif "SHRINE" in new_id.upper():
-            new_ids_by_type_for_display["SHRINE"].append(display_entry)
-        elif "MOB" in new_id.upper() or "RANDOM" in new_id.upper() or "KEEPER" in new_id.upper() or "HERETIC" in new_id.upper() or "MORGANA" in new_id.upper() or "UNDEAD" in new_id.upper() or "AVALON" in new_id.upper():
-            new_ids_by_type_for_display["MOB"].append(display_entry)
+        if ingame_loc_key:
+            name_en = loc_en_data.get(ingame_loc_key, f"Name not found for {ingame_loc_key}")
+            name_id = loc_id_data.get(ingame_loc_key, f"Nama tidak ditemukan untuk {ingame_loc_key}")
         else:
-            new_ids_by_type_for_display["OTHER"].append(display_entry)
-
-    for type_category, id_entries in new_ids_by_type_for_display.items():
-        if id_entries:
-            print(f"\n--- Tipe Kategori: {type_category} ---")
-            for id_val, name_val, tier_info in id_entries:
-                print(f"ID          : {id_val}")
-                print(f"Nama Saran  : {name_val}{tier_info}")
-                print(f"Contoh JSON : \"{id_val}\": [\"{name_val}\", \"❓\", \"{type_category if type_category != 'OTHER' else 'MOB'}\"],")
-                print("-" * 40)
+            print(f"Peringatan: Entitas '{internal_id}' tidak memiliki 'ingame_id' untuk lokalisasi.")
 
 
-    print("\n--------------------------------------------------------------------------")
-    print("\n[AKSI DIPERLUKAN]")
-    print(f"Salin ID baru di atas dan tambahkan ke file '{DATABASE_FILE}' Anda di dalam objek 'translations'.")
-    print("Gunakan format JSON yang disarankan untuk setiap ID.")
-    print("Sesuaikan \"Nama Saran\", ikon \"❓\", dan \"TIPE_KATEGORI\" jika diperlukan.")
-    print('\nTIP: Tipe yang umum adalah "CHEST", "DUNGEON_BOSS", "EVENT_BOSS", "SHRINE", atau "MOB".')
+        output_database[internal_id] = {
+            "internal_id": internal_id,
+            "name_en": name_en,
+            "name_id": name_id,
+            "category": entity_props.get("category", "UNKNOWN_CATEGORY"),
+            "display_type": entity_props.get("display_type", name_en), # Default ke nama jika tidak ada display_type
+            "faction": entity_props.get("faction", "UNKNOWN_FACTION"),
+            # Tambahkan properti lain yang relevan jika ada
+            # Misalnya, "quality" untuk peti, dll.
+        }
+        if "quality" in entity_props: # Khusus untuk entitas seperti peti
+            output_database[internal_id]["quality"] = entity_props["quality"]
+
+        print(f"  Processed: {internal_id} -> {name_en} / {name_id}")
+
+
+    # 3. Tulis ke database.json
+    try:
+        with open(DATABASE_OUTPUT_FILE, 'w', encoding='utf-8') as f:
+            json.dump(output_database, f, indent=2, ensure_ascii=False) # ensure_ascii=False untuk karakter non-ASCII
+        print(f"\nDatabase berhasil dibangun dan disimpan di '{DATABASE_OUTPUT_FILE}'")
+        print(f"Total entitas diproses: {len(output_database)}")
+    except IOError:
+        print(f"Error: Gagal menulis database ke '{DATABASE_OUTPUT_FILE}'.")
+    except Exception as e:
+        print(f"Error tidak terduga saat menulis database: {e}")
+
 
 if __name__ == "__main__":
-    main()
+    print("Memulai proses build database...")
+    build_database()
+    print("\nProses build database selesai.")

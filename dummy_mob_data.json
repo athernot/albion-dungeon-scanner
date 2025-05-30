@@ -1,0 +1,26 @@
+{
+  "UNIQUE_MOB_ID_AVALONIAN_ARCHER": {
+    "ingame_id": "@MOB_AVALONIAN_ARCHER_T8",
+    "category": "MOB",
+    "faction": "AVALONIAN",
+    "display_type": "Archer"
+  },
+  "UNIQUE_MOB_ID_AVALONIAN_SPEARMAN": {
+    "ingame_id": "@MOB_AVALONIAN_SPEARMAN_T8",
+    "category": "MOB",
+    "faction": "AVALONIAN",
+    "display_type": "Spearman"
+  },
+  "UNIQUE_BOSS_ID_BASILISK": {
+    "ingame_id": "@BOSS_AVALONIAN_BASILISK",
+    "category": "BOSS",
+    "faction": "AVALONIAN",
+    "display_type": "Basilisk"
+  },
+  "CHEST_GREEN_STATIC_ID": {
+    "ingame_id": "@CHEST_GREEN_STATIC",
+    "category": "CHEST_NORMAL",
+    "quality": "GREEN",
+    "display_type": "Green Chest"
+  }
+}
